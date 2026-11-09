@@ -27,7 +27,7 @@ CinemaGo is a web-based cinema ticket booking application designed to streamline
 
 ---
 
-## 🛠 Project Architecture & Roles
+## Project Architecture & Roles
 
 The system development adheres to the **Five Main Project Areas**:
 
