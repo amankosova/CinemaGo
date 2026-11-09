@@ -1,0 +1,22 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block panel_content %}
+<div class="panel-top">
+  <h1>{{ section.title }}: {% if instance %}{% trans "Edit" %}{% else %}{% trans "Add new" %}{% endif %}</h1>
+</div>
+
+<form class="form-card" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    <div class="field">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {{ field.errors }}
+    </div>
+  {% endfor %}
+  <button class="btn" type="submit">{% trans "Save" %}</button>
+  <a class="btn btn-soft" href="{% url 'panel_list' key %}">{% trans "Cancel" %}</a>
+</form>
+{% endblock %}

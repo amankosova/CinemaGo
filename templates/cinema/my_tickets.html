@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "My tickets" %} | {% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container" style="max-width: 820px;">
+    <h1>{% trans "My tickets" %}</h1>
+
+    {% if not upcoming and not past and not cancelled %}
+      <div class="empty">
+        <h2>{% trans "You have no tickets yet" %}</h2>
+        <p>{% trans "Pick a movie and your first booking will show up here." %}</p>
+        <a class="btn" href="{% url 'movie_list' %}">{% trans "Browse movies" %}</a>
+      </div>
+    {% endif %}
+
+    {% if upcoming %}
+      <h2>{% trans "Upcoming" %}</h2>
+      {% for ticket in upcoming %}{% include "cinema/_ticket.html" %}{% endfor %}
+    {% endif %}
+
+    {% if past %}
+      <h2 style="margin-top: 36px;">{% trans "Past" %}</h2>
+      {% for ticket in past %}{% include "cinema/_ticket.html" %}{% endfor %}
+    {% endif %}
+
+    {% if cancelled %}
+      <h2 style="margin-top: 36px;">{% trans "Cancelled" %}</h2>
+      {% for ticket in cancelled %}{% include "cinema/_ticket.html" %}{% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

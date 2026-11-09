@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Confirm your booking" %} | {% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <div class="auth-wrap" style="max-width: 560px;">
+      <h1>{% trans "Confirm your booking" %}</h1>
+
+      <h3>{{ showtime.movie.title }}</h3>
+      <p class="muted">
+        {{ showtime.cinema.name }}, {% trans "Hall" %} {{ showtime.hall.name }}<br>
+        {{ showtime.starts_at|date:"j E, D" }}, {{ showtime.starts_at|date:"H:i" }}
+      </p>
+
+      <div class="summary" style="position: static;">
+        <dl>
+          <dt>{% trans "Seats" %}</dt>
+          <dd>{% for seat in seats %}{{ seat.label }}{% if not forloop.last %}, {% endif %}{% endfor %}</dd>
+          <dt>{% trans "Price per seat" %}</dt><dd>{{ showtime.price }} ₸</dd>
+        </dl>
+        <div class="total-line" style="margin-bottom: 0;"><span>{% trans "Total" %}</span><strong>{{ total }} ₸</strong></div>
+      </div>
+
+      <form method="post" action="{% url 'booking_create' showtime.pk %}" style="margin-top: 22px; display: flex; gap: 12px; flex-wrap: wrap;">
+        {% csrf_token %}
+        {% for seat in seats %}<input type="hidden" name="seats" value="{{ seat.id }}">{% endfor %}
+        <button type="submit" class="btn">{% trans "Confirm booking" %}</button>
+        <a class="btn btn-soft" href="{% url 'seat_select' showtime.pk %}">{% trans "Back" %}</a>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

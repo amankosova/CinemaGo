@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Profile | {% endblock %}
+{% block content %}
+<div class="container">
+  <div class="auth-wrap">
+    <h1>My Profile</h1>
+    <div class="profile-details">
+      <div class="profile-line"><span>Username</span><strong>{{ user.username }}</strong></div>
+      <div class="profile-line"><span>Email</span><strong>{{ user.email|default:"Not provided" }}</strong></div>
+      <div class="profile-line"><span>Date joined</span><strong>{{ user.date_joined|date:"d M Y" }}</strong></div>
+    </div>
+    <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn" type="submit">Log out</button></form>
+  </div>
+</div>
+{% endblock %}

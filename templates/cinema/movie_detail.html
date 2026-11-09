@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ movie.title }} | {% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+
+    <div class="movie-head">
+      <div class="poster-img">
+        {% if movie.poster %}
+          <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
+        {% else %}
+          <div class="no-poster">{{ movie.title|first }}</div>
+        {% endif %}
+      </div>
+      <div>
+        <h1>{{ movie.title }}</h1>
+        <div class="facts">
+          {% if movie.genre %}<span class="fact">{{ movie.genre.name }}</span>{% endif %}
+          <span class="fact">{{ movie.duration }} {% trans "min" %}</span>
+          <span class="fact">{{ movie.year }}</span>
+        </div>
+        <p class="movie-desc">{{ movie.description }}</p>
+      </div>
+    </div>
+
+    <div class="showtimes-box">
+      <h2>{% trans "Choose a showtime" %}</h2>
+
+      {% if cinemas %}
+        <div class="chips">
+          <a class="chip {% if not cinema_id %}on{% endif %}" href="?">{% trans "All cinemas" %}</a>
+          {% for cinema in cinemas %}
+            <a class="chip {% if cinema_id == cinema.id|stringformat:'s' %}on{% endif %}" href="?cinema={{ cinema.id }}">{{ cinema.name }}</a>
+          {% endfor %}
+        </div>
+
+        <div class="date-row">
+          {% for d in dates %}
+            <a class="chip big date-chip {% if d == selected_date %}on{% endif %}"
+               href="?{% if cinema_id %}cinema={{ cinema_id }}&amp;{% endif %}date={{ d|date:'Y-m-d' }}">
+              {{ d|date:"D" }}<br>{{ d|date:"j M" }}
+            </a>
+          {% endfor %}
+        </div>
+
+        {% for cinema, showtimes in by_cinema.items %}
+          <div class="cinema-block">
+            <h3>{{ cinema.name }}</h3>
+            <div class="muted small">{{ cinema.city }}, {{ cinema.address }}</div>
+            <div class="time-row">
+              {% for s in showtimes %}
+                <a class="time-btn" href="{% url 'seat_select' s.pk %}">
+                  {{ s.starts_at|date:"H:i" }}
+                  <small>{% trans "Hall" %} {{ s.hall.name }} · {{ s.price }} ₸</small>
+                </a>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="empty">
+          <h2>{% trans "No showtimes yet" %}</h2>
+          <p>{% trans "New sessions will appear here soon." %}</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

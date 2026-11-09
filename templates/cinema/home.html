@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Your seat is waiting.</h1>
+      <p class="lead">Find your next cinema experience with CinemaGo.</p>
+      <a class="btn" href="{% url 'movie_list' %}">Explore movies</a>
+    </div>
+    <div class="hero-art"><img src="{% static 'img/hero.svg' %}" alt="CinemaGo"></div>
+  </div>
+</section>
+<section class="section"><div class="container"><div class="section-head"><h2>Movies</h2></div><div class="poster-grid"></div></div></section>
+{% endblock %}

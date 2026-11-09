@@ -1,0 +1,32 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}CinemaGo</title>
+  <link rel="icon" href="{% static 'img/favicon.svg' %}" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header class="site-header"><div class="container header-row">
+  <a class="brand" href="{% url 'home' %}"><span class="brand-a">Cinema</span><span class="brand-b">Go</span></a>
+  <nav class="main-nav">
+    <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+    <a href="{% url 'movie_list' %}" class="{% if request.resolver_match.url_name == 'movie_list' %}active{% endif %}">Movies</a>
+  </nav>
+  <div class="header-tools"><div class="user-box">
+    {% if user.is_authenticated %}
+      <a class="btn btn-soft btn-small" href="{% url 'profile' %}">Profile</a>
+      <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-soft btn-small" type="submit">Log out</button></form>
+    {% else %}
+      <a class="btn btn-soft btn-small" href="{% url 'login' %}">Log in</a>
+      <a class="btn btn-small" href="{% url 'register' %}">Sign up</a>
+    {% endif %}
+  </div></div>
+</div></header>
+{% if messages %}<div class="toasts" role="status">{% for message in messages %}<div class="toast {{ message.tags }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="site-footer"><div class="container">CinemaGo</div></footer>
+<script src="{% static 'js/app.js' %}"></script>
+{% block scripts %}{% endblock %}
+</body></html>

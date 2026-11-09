@@ -1,0 +1,15 @@
+{% load i18n %}
+<a class="poster-tile" href="{% url 'movie_detail' movie.pk %}">
+  <div class="poster-img">
+    {% if movie.poster %}
+      <img src="{{ movie.poster.url }}" alt="{{ movie.title }}" loading="lazy">
+    {% else %}
+      <div class="no-poster">{{ movie.title|first }}</div>
+    {% endif %}
+  </div>
+  <div class="poster-title">{{ movie.title }}</div>
+  <div class="poster-meta">
+    {% if movie.genre %}<span>{{ movie.genre.name }}</span>{% endif %}
+    <span>{{ movie.duration }} {% trans "min" %}</span>
+  </div>
+</a>

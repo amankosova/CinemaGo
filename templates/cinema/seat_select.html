@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "Choose your seats" %} | {% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1>{% trans "Choose your seats" %}</h1>
+
+    <form class="booking-layout" method="post" action="{% url 'booking_confirm' showtime.pk %}"
+          data-seat-form data-price="{{ showtime.price }}" data-max="{{ max_seats }}">
+      {% csrf_token %}
+
+      <div class="hall-box">
+        <div class="screen">{% trans "Screen" %}</div>
+
+        <div class="seat-rows">
+          {% for row in rows %}
+            <div class="seat-row">
+              <span class="row-letter">{{ row.letter }}</span>
+              {% for item in row.seats %}
+                {% if item.taken %}
+                  <span class="seat taken" title="{% trans 'Taken' %}"><span>{{ item.seat.number }}</span></span>
+                {% else %}
+                  <label class="seat" title="{{ item.seat.label }}">
+                    <input type="checkbox" name="seats" value="{{ item.seat.id }}" data-label="{{ item.seat.label }}">
+                    <span>{{ item.seat.number }}</span>
+                  </label>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="legend">
+          <span><i class="l-free"></i>{% trans "Free" %}</span>
+          <span><i class="l-mine"></i>{% trans "Your choice" %}</span>
+          <span><i class="l-taken"></i>{% trans "Taken" %}</span>
+        </div>
+      </div>
+
+      <aside class="summary">
+        <h3>{{ showtime.movie.title }}</h3>
+        <div class="muted">{{ showtime.cinema.name }}, {% trans "Hall" %} {{ showtime.hall.name }}</div>
+        <dl>
+          <dt>{% trans "Date" %}</dt><dd>{{ showtime.starts_at|date:"j E, D" }}</dd>
+          <dt>{% trans "Time" %}</dt><dd>{{ showtime.starts_at|date:"H:i" }}</dd>
+          <dt>{% trans "Price per seat" %}</dt><dd>{{ showtime.price }} ₸</dd>
+          <dt>{% trans "Seats" %}</dt><dd id="chosen">—</dd>
+        </dl>
+        <div class="total-line"><span>{% trans "Total" %}</span><strong id="total">0 ₸</strong></div>
+        <p id="limit-note" class="small muted" hidden>{% blocktrans with max=max_seats %}You can book up to {{ max }} seats at once.{% endblocktrans %}</p>
+        <button type="submit" class="btn" id="continue" disabled>{% trans "Continue" %}</button>
+      </aside>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}<script src="{% static 'js/seats.js' %}"></script>{% endblock %}

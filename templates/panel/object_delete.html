@@ -1,0 +1,21 @@
+{% extends "panel/base.html" %}
+{% load i18n %}
+
+{% block panel_content %}
+<div class="panel-top"><h1>{% trans "Delete" %}</h1></div>
+
+<div class="form-card">
+  <p>{% trans "Are you sure you want to delete this item?" %}</p>
+  <p><strong>{{ obj }}</strong></p>
+
+  {% if booked %}
+    <div class="warn">{% blocktrans with count=booked %}Warning: {{ count }} active booking(s) will be deleted too.{% endblocktrans %}</div>
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">{% trans "Yes, delete" %}</button>
+    <a class="btn btn-soft" href="{% url 'panel_list' key %}">{% trans "Cancel" %}</a>
+  </form>
+</div>
+{% endblock %}

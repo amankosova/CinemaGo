@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Log in" %} | {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="auth-wrap">
+    <h1>{% trans "Welcome back" %}</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+      {{ form.non_field_errors }}
+      {% for field in form %}
+        <div class="field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {{ field.errors }}
+        </div>
+      {% endfor %}
+      <button class="btn" type="submit">{% trans "Log in" %}</button>
+    </form>
+    <p class="muted" style="margin-top: 18px;">{% trans "New here?" %} <a href="{% url 'register' %}">{% trans "Create an account" %}</a></p>
+  </div>
+</div>
+{% endblock %}

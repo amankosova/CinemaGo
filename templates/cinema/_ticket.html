@@ -1,0 +1,29 @@
+{% load i18n %}
+<article class="ticket {% if ticket.status == 'cancelled' %}is-cancelled{% elif ticket.showtime.is_past %}is-past{% endif %}">
+  <div class="ticket-main">
+    <h3>{{ ticket.showtime.movie.title }}</h3>
+    <div class="ticket-lines">
+      <div>{{ ticket.showtime.cinema.name }}, {% trans "Hall" %} {{ ticket.showtime.hall.name }}</div>
+      <div>{{ ticket.showtime.starts_at|date:"j E, D" }}, {{ ticket.showtime.starts_at|date:"H:i" }}</div>
+      <div>{{ ticket.price }} ₸</div>
+    </div>
+    {% if ticket.status == 'cancelled' %}
+      <span class="tag">{% trans "Cancelled" %}</span>
+    {% elif ticket.showtime.is_past %}
+      <span class="tag">{% trans "Watched" %}</span>
+    {% else %}
+      <span class="tag ok">{% trans "Booked" %}</span>
+      {% trans "Cancel this booking?" as ask_text %}
+      <form method="post" action="{% url 'ticket_cancel' ticket.pk %}" style="display: inline; margin-left: 8px;"
+            onsubmit="return confirm('{{ ask_text|escapejs }}');">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-ghost btn-small">{% trans "Cancel booking" %}</button>
+      </form>
+    {% endif %}
+  </div>
+  <div class="ticket-stub">
+    <div class="muted small">{% trans "Seat" %}</div>
+    <div class="seat-big">{{ ticket.seat.label }}</div>
+    <div class="ticket-code">{{ ticket.code }}</div>
+  </div>
+</article>

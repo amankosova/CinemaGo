@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Admin panel" %} | {% endblock %}
+
+{% block content %}
+<div class="container panel-shell">
+  <nav class="panel-nav" aria-label="{% trans 'Admin panel' %}">
+    <a href="{% url 'panel' %}" class="{% if request.resolver_match.url_name == 'panel' %}active{% endif %}">{% trans "Overview" %}</a>
+    {% for key, title in nav %}
+      <a href="{% url 'panel_list' key %}" class="{% if request.resolver_match.kwargs.key == key %}active{% endif %}">{{ title }}</a>
+    {% endfor %}
+  </nav>
+
+  <div>
+    {% block panel_content %}{% endblock %}
+  </div>
+</div>
+{% endblock %}
