@@ -4,6 +4,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path("accounts/", include("accounts.urls")),
+    path("panel/", include("panel.urls")),
     path("", include("cinema.urls")),
 ]
 
