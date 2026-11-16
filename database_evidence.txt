@@ -1,0 +1,29 @@
+CinemaGo | Movie & Showtime Data Work
+SOURCE: film titles, category labels, cinema names and addresses from the user-provided kino.kz catalogue text.
+DEMO ONLY: duration=100 min, year=2026, descriptions, demo hall sizes, showtime dates/prices are NOT real listings.
+Genres: current Movie model accepts only ONE genre, so the first listed genre is used; all source genres are preserved in the description.
+
+NEW RECORDS CREATED ON THIS RUN:
+  genres: 16
+  movies: 61
+  cinemas: 20
+  halls: 4
+  showtimes: 8
+
+DATABASE TOTALS: films=64, cinemas=21, showtimes=11, halls=5, seats=143
+
+DEMO SHOWTIMES (Movie -> Showtime -> Hall -> Cinema):
+  Бажа кинода | 2026-11-12 18:30 | 2500 KZT | Demo Hall 1 | Halyk IMAX Aport Cinema East
+  Заманback 2 | 2026-11-13 19:00 | 2800 KZT | Demo Hall 1 | Kinoforum 15 (ТРЦ Forum)
+  Бауыр | 2026-11-14 17:00 | 2400 KZT | Demo Hall 1 | Cinemax Dostyk Multiplex
+  Қара түйін | 2026-11-15 20:00 | 3000 KZT | Demo Hall 1 | Lumiera Cinema (ЦУМ)
+  Кот в шляпе | 2026-11-16 12:00 | 2200 KZT | Demo Hall 1 | Halyk IMAX Aport Cinema East
+  Шымыр | 2026-11-17 16:30 | 2600 KZT | Demo Hall 1 | Kinoforum 15 (ТРЦ Forum)
+  Жарығым-ай | 2026-11-18 15:00 | 2300 KZT | Demo Hall 1 | Cinemax Dostyk Multiplex
+  Дюна: Часть третья | 2026-11-19 21:00 | 3500 KZT | Demo Hall 1 | Lumiera Cinema (ЦУМ)
+
+DATA INTEGRITY CHECKS:
+  Duplicate seat positions within a hall: 0 []
+  Hall seat count mismatches: 0 []
+  SQLite foreign key violations: 0 []
+RESULT: CHECKS PASSED
