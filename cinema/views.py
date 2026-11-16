@@ -238,21 +238,60 @@ def my_tickets(request):
         'past': [t for t in qs if t.status == Ticket.BOOKED and t.showtime.starts_at <= now],
         'pending': [t for t in qs if t.status == Ticket.PENDING],
         'cancelled': [t for t in qs if t.status == Ticket.CANCELLED],
+        'refunded': [t for t in qs if t.status == Ticket.REFUNDED],
     })
 
 
 @login_required
 def ticket_cancel(request, pk):
+    """Cancel an unpaid seat hold; paid tickets are not cancellable here."""
     if request.method != 'POST':
         return HttpResponseNotAllowed(['POST'])
-    ticket = get_object_or_404(Ticket, pk=pk, user=request.user)
-    if ticket.status == Ticket.BOOKED and not ticket.showtime.is_past:
-        ticket.status = Ticket.CANCELLED
-        ticket.save(update_fields=['status'])
-        messages.success(request, 'Booking cancelled.')
+    expire_reservations()
+    with transaction.atomic():
+        ticket = get_object_or_404(Ticket.objects.select_for_update(), pk=pk, user=request.user)
+        if ticket.status == Ticket.PENDING and ticket.reservation_id:
+            order = Reservation.objects.select_for_update().get(pk=ticket.reservation_id)
+            if order.status == 'pending' and order.expires_at > timezone.now():
+                ticket.status = Ticket.CANCELLED
+                ticket.save(update_fields=['status'])
+                if not order.tickets.filter(status=Ticket.PENDING).exists():
+                    order.status = 'cancelled'
+                    order.save(update_fields=['status'])
+                messages.success(request, 'Unpaid booking cancelled.')
+        elif ticket.status == Ticket.BOOKED:
+            messages.info(request, 'Paid tickets cannot be cancelled as unpaid bookings.')
     return redirect('my_tickets')
 
+@login_required
+def ticket_refund(request, pk):
+    """Demo refund for a paid ticket before the showtime."""
+    if request.method != "POST":
+        return HttpResponseNotAllowed(["POST"])
 
+    with transaction.atomic():
+        ticket = get_object_or_404(
+            Ticket.objects.select_for_update().select_related(
+                "reservation", "showtime"
+            ),
+            pk=pk,
+            user=request.user,
+        )
+
+        if (
+            ticket.status != Ticket.BOOKED
+            or ticket.reservation is None
+            or ticket.reservation.status != "paid"
+            or ticket.showtime.starts_at <= timezone.now()
+        ):
+            messages.error(request, "This ticket cannot be refunded.")
+            return redirect("my_tickets")
+
+        ticket.status = Ticket.REFUNDED
+        ticket.save(update_fields=["status"])
+
+    messages.success(request, "Ticket refunded successfully (demo).")
+    return redirect("my_tickets")
 @login_required
 def ticket_qr(request, pk):
     """Owner-only PNG. The QR carries a signed, limited ticket reference."""
