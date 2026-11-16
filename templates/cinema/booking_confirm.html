@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% get_current_language as lang %}
+{% block title %}Checkout | {% endblock %}
+{% block content %}
+<section class="section payment-section">
+  <div class="container checkout-layout">
+    <div class="checkout-main">
+      <div class="checkout-eyebrow">CinemaGo · {% if lang == 'kk' %}Төлем{% elif lang == 'ru' %}Оплата{% else %}Checkout{% endif %}</div>
+      <h1>{% if lang == 'kk' %}Брондауды аяқтаңыз{% elif lang == 'ru' %}Завершите бронирование{% else %}Complete your booking{% endif %}</h1>
+      <p class="muted">{% if lang == 'kk' %}Орындар 10 минутқа сақталды. Төменде оқу мақсатындағы төлем тәсілін таңдаңыз.{% elif lang == 'ru' %}Места удерживаются 10 минут. Выберите способ демонстрационной оплаты.{% else %}Your seats are held for 10 minutes. Choose a demo payment method.{% endif %}</p>
+      <div class="countdown-panel" data-deadline="{{ expires_iso }}" data-expired-text="{% if lang == 'kk' %}Уақыт аяқталды{% elif lang == 'ru' %}Время вышло{% else %}Time expired{% endif %}">
+        <div><div class="countdown-label">{% if lang == 'kk' %}Төлемге қалған уақыт{% elif lang == 'ru' %}Осталось на оплату{% else %}Time left to pay{% endif %}</div>
+          <div class="countdown-value" id="checkout-clock" role="timer">10:00</div></div>
+        <div class="countdown-icon">⏳</div>
+      </div>
+      <form id="demo-payment-form" method="post" action="{% url 'booking_create' showtime.pk %}">
+        {% csrf_token %}<input type="hidden" name="reservation" value="{{ order.pk }}">
+        <h2 class="payment-subhead">{% if lang == 'kk' %}Төлем тәсілі{% elif lang == 'ru' %}Способ оплаты{% else %}Payment method{% endif %}</h2>
+        <div class="payment-method-grid">
+          <label class="payment-choice" data-method="card">
+            <input type="radio" name="payment_method" value="card" checked>
+            <span class="pay-radio"></span><span class="pay-icon">💳</span>
+            <span><strong>{% if lang == 'kk' %}Тест картасы{% elif lang == 'ru' %}Демо-карта{% else %}Demo card{% endif %}</strong><small>Visa ···· 4242</small></span>
+          </label>
+          <label class="payment-choice" data-method="qr">
+            <input type="radio" name="payment_method" value="qr">
+            <span class="pay-radio"></span><span class="pay-icon">▦</span>
+            <span><strong>{% if lang == 'kk' %}QR арқылы төлеу{% elif lang == 'ru' %}Оплата по QR{% else %}Demo QR payment{% endif %}</strong><small>CinemaGo Demo QR</small></span>
+          </label>
+        </div>
+        <div id="card-panel" class="method-panel">
+          <div class="method-panel-title">💳 {% if lang == 'kk' %}Сақталған тест картасы{% elif lang == 'ru' %}Сохранённая тестовая карта{% else %}Saved demo card{% endif %}</div>
+          <p class="muted small">Visa ···· 4242</p>
+          <p class="method-tip">{% if lang == 'kk' %}Бұл нақты банк картасы емес. Деректерді енгізу қажет емес.{% elif lang == 'ru' %}Это учебный способ оплаты. Настоящие данные карты вводить не нужно.{% else %}This is a simulated card, not a real bank card. No card details are collected.{% endif %}</p>
+        </div>
+        <div id="qr-panel" class="method-panel" hidden>
+          <div class="method-panel-title">▦ {% if lang == 'kk' %}Демо QR-код{% elif lang == 'ru' %}Демонстрационный QR-код{% else %}Demo payment QR{% endif %}</div>
+          <div class="qr-wrapper"><img src="{{ qr_data }}" alt="Demo order QR" width="188" height="188"/></div>
+          <p class="method-tip">{% if lang == 'kk' %}Бұл QR тек тест тапсырысын көрсетеді. Банктік төлем жасалмайды.{% elif lang == 'ru' %}QR содержит номер тестового заказа. Он не предназначен для перевода настоящих денег.{% else %}This QR identifies a demo order only. It cannot receive real payments.{% endif %}</p>
+        </div>
+        <button type="submit" class="btn pay-submit" id="pay-submit">{% if lang == 'kk' %}Тест төлемін растау{% elif lang == 'ru' %}Подтвердить демо-оплату{% else %}Confirm demo payment{% endif %} · {{ total }} ₸</button>
+        <p class="payment-disclaimer">{% if lang == 'kk' %}Оқу жобасы: нақты ақша алынбайды.{% elif lang == 'ru' %}Учебный проект: реальные деньги не списываются.{% else %}Student demo: no real money is charged.{% endif %}</p>
+      </form>
+    </div>
+    <aside class="checkout-summary">
+      <h2>{% if lang == 'kk' %}Тапсырысыңыз{% elif lang == 'ru' %}Ваш заказ{% else %}Your order{% endif %}</h2>
+      <h3>{{ showtime.movie.title }}</h3>
+      <p class="muted">{{ showtime.cinema.name }} · {{ showtime.hall.name }}</p>
+      <p class="muted">{{ showtime.starts_at|date:"j E, D" }} · {{ showtime.starts_at|date:"H:i" }}</p>
+      <div class="checkout-summary-line"><span>{% trans "Seats" %}</span><strong>{% for seat in seats %}{{ seat.label }}{% if not forloop.last %}, {% endif %}{% endfor %}</strong></div>
+      <div class="checkout-summary-line"><span>{% trans "Price per seat" %}</span><strong>{{ showtime.price }} ₸</strong></div>
+      <div class="checkout-summary-total"><span>{% trans "Total" %}</span><strong>{{ total }} ₸</strong></div>
+      <p class="small muted">{% if lang == 'kk' %}Төлем аяқталмаса, бронь мерзімі өтіп, орындар босайды.{% elif lang == 'ru' %}Если не оплатить вовремя, бронь истечёт и места освободятся.{% else %}If time runs out, your hold expires and seats become available.{% endif %}</p>
+      <a href="{% url 'seat_select' showtime.pk %}" class="checkout-back">← {% trans "Back" %}</a>
+    </aside>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="/static/js/checkout.js"></script>{% endblock %}

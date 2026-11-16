@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Log in" %} | {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="auth-wrap">
+    <h1>{% trans "Welcome back" %}</h1>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+      {% if login_error %}
+        <div class="login-error" role="alert">{{ login_error }}</div>
+      {% endif %}
+      {% if lock_seconds %}
+        <p class="muted" id="login-lock-countdown" data-seconds="{{ lock_seconds }}" aria-live="polite"></p>
+      {% endif %}
+      {% for field in form %}
+        <div class="field">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {{ field.errors }}
+        </div>
+      {% endfor %}
+      <button class="btn" type="submit" {% if lock_seconds %}disabled{% endif %}>{% trans "Log in" %}</button>
+    </form>
+    <script>
+      (() => {
+        const label = document.getElementById('login-lock-countdown');
+        if (!label) return;
+        const deadline = Date.now() + Number(label.dataset.seconds) * 1000;
+        const update = () => {
+          const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+          const min = Math.floor(remaining / 60);
+          const sec = String(remaining % 60).padStart(2, '0');
+          label.textContent = `${min}:${sec}`;
+          if (!remaining) { window.clearInterval(timer); window.location.reload(); }
+        };
+        const timer = window.setInterval(update, 1000);
+        update();
+      })();
+    </script>
+    <p class="muted" style="margin-top: 18px;">{% trans "New here?" %} <a href="{% url 'register' %}">{% trans "Create an account" %}</a></p>
+  </div>
+</div>
+{% endblock %}

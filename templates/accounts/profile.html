@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans 'Profile' %} | {% endblock %}
+{% block content %}
+<div class="container"><div class="auth-wrap">
+  <h1>{% trans 'My Profile' %}</h1>
+  <div class="profile-details">
+    <div class="profile-line"><span>{% trans 'Username' %}</span><strong>{{ user.username }}</strong></div>
+    <div class="profile-line"><span>{% trans 'Email' %}</span><strong>{{ user.email|default:'—' }}</strong></div>
+    <div class="profile-line"><span>{% trans 'Date joined' %}</span><strong>{{ user.date_joined|date:'d M Y' }}</strong></div>
+  </div>
+  <div class="profile-actions">
+    <a class="btn" href="{% url 'my_tickets' %}">{% trans 'My Tickets' %}</a>
+    {% if user.is_superuser %}<a class="btn" href="{% url 'panel' %}">{% trans 'Admin Panel' %}</a>{% endif %}
+  </div>
+  <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-soft" type="submit">{% trans 'Log out' %}</button></form>
+</div></div>
+{% endblock %}

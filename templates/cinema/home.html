@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% block content %}
+{% get_current_language as LANGUAGE_CODE %}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>{% trans 'Your seat is waiting.' %}</h1>
+      <p class="lead">{% trans 'Find your next cinema experience with CinemaGo.' %}</p>
+      <a class="btn" href="{% url 'movie_list' %}">{% trans 'Explore movies' %}</a>
+    </div>
+    <div class="hero-art"><img src="{% static 'img/hero.svg' %}" alt="CinemaGo"></div>
+  </div>
+</section>
+<section class="section now-showing">
+  <div class="container">
+    <div class="section-head"><h2>{% trans 'Now Showing' %}</h2><a class="see-all" href="{% url 'movie_list' %}">{% trans 'All movies' %} →</a></div>
+    <div class="poster-grid home-poster-grid">
+      {% for movie in movies %}
+        {% include 'cinema/_movie_tile.html' %}
+      {% empty %}<p>{% trans 'No movies yet.' %}</p>{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section home-cinemas">
+  <div class="container">
+    <div class="section-head"><h2>{% trans 'Our Cinemas' %}</h2></div>
+    <div class="cinema-home-grid">
+      {% for item in cinemas %}
+        <article class="cinema-home-card">
+          <div class="cinema-photo">
+            {% if item.photo %}<img src="{{ item.photo.0 }}" alt="{{ item.cinema.name }}" loading="lazy" referrerpolicy="no-referrer">{% else %}<span aria-hidden="true">🎬</span>{% endif %}
+          </div>
+          <div class="cinema-home-body"><h3>{{ item.cinema.name }}</h3><p>{{ item.cinema.city }} · {{ item.cinema.address }}</p>
+          <a href="{% url 'movie_list' %}?cinema={{ item.cinema.pk }}">{% trans 'Browse movies' %} →</a>
+          {% if item.photo %}<small class="photo-credit">{% trans 'Photo' %}: <a href="{{ item.photo.2 }}" target="_blank" rel="noopener noreferrer">{{ item.photo.1 }}</a></small>{% endif %}
+          </div>
+        </article>
+      {% empty %}<p>{% trans 'Cinemas will appear here soon.' %}</p>{% endfor %}
+    </div>
+  </div>
+</section>
+<section class="section how-section">
+  <div class="container"><div class="section-head"><h2>{% trans 'How it works' %}</h2></div>
+    <div class="steps-home">
+      <div class="step-home">
+        <span class="step-circle">1</span>
+        <div class="step-details">
+          <strong>{% trans 'Choose a movie' %}</strong>
+          <p>{% if LANGUAGE_CODE == 'kk' %}Каталогтан фильмді таңдап, өзіңізге ыңғайлы кинотеатр мен сеансты табыңыз.{% elif LANGUAGE_CODE == 'ru' %}Найдите фильм в каталоге, затем выберите кинотеатр и удобный сеанс.{% else %}Explore the catalogue, then choose a cinema and a convenient showtime.{% endif %}</p>
+        </div>
+      </div>
+      <div class="step-home">
+        <span class="step-circle">2</span>
+        <div class="step-details">
+          <strong>{% trans 'Select your seats' %}</strong>
+          <p>{% if LANGUAGE_CODE == 'kk' %}Зал сызбасынан бос орындарды таңдаңыз. Бағасы бірден көрсетіледі.{% elif LANGUAGE_CODE == 'ru' %}Отметьте свободные места на схеме зала. Сумма заказа появится сразу.{% else %}Pick available seats on the seat map and see your total before booking.{% endif %}</p>
+        </div>
+      </div>
+      <div class="step-home">
+        <span class="step-circle">3</span>
+        <div class="step-details">
+          <strong>{% trans 'Confirm your booking' %}</strong>
+          <p>{% if LANGUAGE_CODE == 'kk' %}Таңдауыңызды тексеріп, броньды растаңыз. Билеттеріңіз «Менің билеттерім» бөлімінде сақталады.{% elif LANGUAGE_CODE == 'ru' %}Проверьте заказ и подтвердите бронь. Билеты появятся в разделе «Мои билеты».{% else %}Review and confirm your reservation. Find your tickets under My Tickets.{% endif %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

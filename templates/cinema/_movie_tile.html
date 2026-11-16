@@ -1,0 +1,24 @@
+{% load i18n %}
+<article class="movie-card">
+  <a class="poster-tile" href="{% url 'movie_detail' movie.pk %}" aria-label="{{ movie.title }}">
+    <div class="poster-img">
+      {% if movie.poster %}<img src="{{ movie.poster.url }}" alt="{{ movie.title }}" loading="lazy">
+      {% else %}<div class="no-poster">{{ movie.title|first }}</div>{% endif %}
+    </div>
+    <div class="poster-title">{{ movie.title }}</div>
+    <div class="poster-meta"><span>{{ movie.genre_names }}</span><span>{{ movie.duration }} {% trans 'min' %}</span></div>
+  </a>
+  <aside class="movie-preview" role="note" aria-label="{% trans 'Movie details' %}" aria-hidden="true">
+    <div class="preview-layout">
+      {% if movie.poster %}<img src="{{ movie.poster.url }}" alt="" loading="lazy">{% endif %}
+      <div class="preview-info">
+        <strong>{{ movie.title }}</strong>
+        <div class="preview-facts">{{ movie.year }} · {{ movie.duration }} {% trans 'min' %}{% if movie.age_rating %} · {{ movie.age_rating }}{% endif %}</div>
+        <div class="preview-genres">{{ movie.genre_names }}</div>
+        {% if movie.director %}<div><b>{% trans 'Director' %}:</b> {{ movie.director }}</div>{% endif %}
+      </div>
+    </div>
+    <p class="preview-desc">{{ movie.description|truncatechars:160 }}</p>
+    <a class="preview-action" href="{% url 'movie_detail' movie.pk %}">{% trans 'View showtimes' %} →</a>
+  </aside>
+</article>

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Ticket verification | {% endblock %}
+{% block content %}
+<section class="section"><div class="container" style="max-width:660px">
+<div class="auth-wrap" style="text-align:center">
+{% if valid %}
+<h1>✓ {% if LANGUAGE_CODE == 'kk' %}Билет жарамды{% elif LANGUAGE_CODE == 'ru' %}Билет действителен{% else %}Valid ticket{% endif %}</h1>
+<p>{% if LANGUAGE_CODE == 'kk' %}CinemaGo демонстрациялық билеті расталды.{% elif LANGUAGE_CODE == 'ru' %}Демонстрационный билет CinemaGo подтверждён.{% else %}CinemaGo demo ticket verified.{% endif %}</p>
+{% else %}
+<h1>✕ {% if LANGUAGE_CODE == 'kk' %}Билет жарамсыз{% elif LANGUAGE_CODE == 'ru' %}Билет недействителен{% else %}Invalid ticket{% endif %}</h1>
+<p>{% if LANGUAGE_CODE == 'kk' %}Бұл QR-код жарамсыз немесе билет жойылған.{% elif LANGUAGE_CODE == 'ru' %}QR-код недействителен или билет отменён.{% else %}Invalid QR code or cancelled ticket.{% endif %}</p>
+{% endif %}
+</div></div></section>
+{% endblock %}

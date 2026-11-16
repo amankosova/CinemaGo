@@ -1,0 +1,2 @@
+{% extends "base.html" %}{% load i18n %}
+{% block content %}<section class="section"><div class="container" style="max-width:650px"><div class="checkout-summary"><h1>{% trans "Reservation expired" %}</h1><p>{% trans "Your ten-minute seat hold has ended. The seats are available for a new booking." %}</p><a class="btn" href="{% url 'seat_select' order.showtime_id %}">{% trans "Choose seats again" %}</a></div></div></section>{% endblock %}

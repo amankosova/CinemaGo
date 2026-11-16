@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}403 | {% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="empty" style="padding-top: 80px;">
+    <h1>{% trans "This page is for staff only" %}</h1>
+    <p>{% trans "Your account does not have access to the admin panel." %}</p>
+    <a class="btn" href="{% url 'home' %}">{% trans "Back to home" %}</a>
+  </div>
+</div>
+{% endblock %}

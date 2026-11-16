@@ -1,0 +1,492 @@
+# Russian translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-13 18:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: ru\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Address (English)"
+msgstr "Адрес (английский)"
+
+msgid "Address (Russian)"
+msgstr "Адрес (русский)"
+
+msgid "Are you sure you want to delete this item?"
+msgstr "Вы точно хотите удалить эту запись?"
+
+msgid "Back to home"
+msgstr "На главную"
+
+msgid "Choose at least one seat."
+msgstr "Выберите хотя бы одно место."
+
+msgid "Choose seats"
+msgstr "Выбрать места"
+
+msgid "Cinema"
+msgstr "Кинотеатр"
+
+msgid "CinemaGo: book your cinema seat online."
+msgstr "CinemaGo: бронируйте места в кино онлайн."
+
+msgid "Cinemas"
+msgstr "Кинотеатры"
+
+msgid "City"
+msgstr "Город"
+
+msgid "City (English)"
+msgstr "Город (английский)"
+
+msgid "City (Russian)"
+msgstr "Город (русский)"
+
+msgid "Clear filters"
+msgstr "Сбросить фильтры"
+
+msgid "Deleted."
+msgstr "Удалено."
+
+msgid "Description (English)"
+msgstr "Описание (английский)"
+
+msgid "Description (Russian)"
+msgstr "Описание (русский)"
+
+msgid "Duration (min)"
+msgstr "Длительность (мин)"
+
+msgid "Genres"
+msgstr "Жанры"
+
+msgid "Hall name"
+msgstr "Название зала"
+
+msgid "Halls"
+msgstr "Залы"
+
+msgid "Movie, cinema or showtime"
+msgstr "Фильм, кинотеатр или сеанс"
+
+msgid "Name"
+msgstr "Название"
+
+msgid "Name (English)"
+msgstr "Название (английский)"
+
+msgid "Name (Russian)"
+msgstr "Название (русский)"
+
+msgid "Nothing found"
+msgstr "Ничего не найдено"
+
+msgid "Now showing"
+msgstr "Сейчас в кино"
+
+msgid "Our cinemas"
+msgstr "Наши кинотеатры"
+
+msgid "Page not found"
+msgstr "Страница не найдена"
+
+msgid ""
+"Pick a movie, choose a time and tap the exact seat you want. It takes less than a "
+"minute."
+msgstr "Выберите фильм, время и точное место в зале. Это займёт меньше минуты."
+
+msgid "Poster"
+msgstr "Постер"
+
+msgid "Price (KZT)"
+msgstr "Цена (тг)"
+
+msgid "Rows"
+msgstr "Рядов"
+
+msgid "Saved."
+msgstr "Сохранено."
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Search movies and cinemas"
+msgstr "Поиск фильмов и кинотеатров"
+
+msgid "Seats in a row"
+msgstr "Мест в ряду"
+
+msgid "Showtimes"
+msgstr "Сеансы"
+
+msgid "Something is wrong with the chosen seats. Please try again."
+msgstr "С выбранными местами что-то не так. Попробуйте ещё раз."
+
+msgid "Sorry, one of the seats was just taken. Please choose another."
+msgstr "К сожалению, одно из мест только что заняли. Выберите другое."
+
+msgid "The booking was cancelled and the seat is free again."
+msgstr "Бронь отменена, место снова свободно."
+
+msgid "The page you are looking for does not exist or was moved."
+msgstr "Такой страницы нет или она переехала."
+
+msgid "There are no movies in this genre yet."
+msgstr "В этом жанре пока нет фильмов."
+
+msgid "This page is for staff only"
+msgstr "Эта страница только для сотрудников"
+
+msgid "This ticket can no longer be cancelled."
+msgstr "Этот билет уже нельзя отменить."
+
+msgid "Title"
+msgstr "Название"
+
+msgid "Title (English)"
+msgstr "Название (английский)"
+
+msgid "Title (Russian)"
+msgstr "Название (русский)"
+
+msgid "Try a different word or clear the filters."
+msgstr "Попробуйте другое слово или сбросьте фильтры."
+
+msgid "Type a title, cinema or city"
+msgstr "Введите название, кинотеатр или город"
+
+#, python-format
+msgid "Warning: %(count)s active booking(s) will be deleted too."
+msgstr "Внимание: вместе с этим будут удалены активные брони: %(count)s."
+
+#, python-format
+msgid "Welcome to CinemaGo, %(name)s!"
+msgstr "Добро пожаловать в CinemaGo, %(name)s!"
+
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#, python-format
+msgid "You can book up to %(max)s seats at once."
+msgstr "За один раз можно забронировать не больше %(max)s мест."
+
+msgid "Your account does not have access to the admin panel."
+msgstr "У вашего аккаунта нет доступа к админ-панели."
+
+msgid "Your seats are booked. Enjoy the movie!"
+msgstr "Места забронированы. Приятного просмотра!"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Main navigation"
+msgstr "Основная навигация"
+
+msgid "Movies"
+msgstr "Фильмы"
+
+msgid "Language"
+msgstr "Язык"
+
+msgid "My Tickets"
+msgstr "Мои билеты"
+
+msgid "Admin Panel"
+msgstr "Админ-панель"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Log out"
+msgstr "Выйти"
+
+msgid "Log in"
+msgstr "Войти"
+
+msgid "Sign up"
+msgstr "Регистрация"
+
+msgid "min"
+msgstr "мин"
+
+msgid "Movie details"
+msgstr "Информация о фильме"
+
+msgid "Director"
+msgstr "Режиссёр"
+
+msgid "View showtimes"
+msgstr "Посмотреть сеансы"
+
+msgid "My tickets"
+msgstr "Мои билеты"
+
+msgid "You have no tickets yet"
+msgstr "У вас пока нет билетов"
+
+msgid "Pick a movie and your first booking will show up here."
+msgstr "Выберите фильм, и ваше бронирование появится здесь."
+
+msgid "Browse movies"
+msgstr "Смотреть фильмы"
+
+msgid "Upcoming"
+msgstr "Предстоящие"
+
+msgid "Past"
+msgstr "Прошедшие"
+
+msgid "Cancelled"
+msgstr "Отменённые"
+
+msgid "Your seat is waiting."
+msgstr "Твоё место ждёт тебя."
+
+msgid "Find your next cinema experience with CinemaGo."
+msgstr "Найди свой следующий фильм с CinemaGo."
+
+msgid "Explore movies"
+msgstr "Смотреть фильмы"
+
+msgid "Now Showing"
+msgstr "Сейчас в кино"
+
+msgid "All movies"
+msgstr "Все фильмы"
+
+msgid "No movies yet."
+msgstr "Фильмов пока нет."
+
+msgid "Our Cinemas"
+msgstr "Наши кинотеатры"
+
+msgid "Cinemas will appear here soon."
+msgstr "Кинотеатры скоро появятся."
+
+msgid "How it works"
+msgstr "Как это работает"
+
+msgid "Choose a movie"
+msgstr "Выбери фильм"
+
+msgid "Select your seats"
+msgstr "Выбери места"
+
+msgid "Confirm your booking"
+msgstr "Подтверди бронирование"
+
+msgid "Cast"
+msgstr "В ролях"
+
+msgid "Country"
+msgstr "Страна"
+
+msgid "Choose a showtime"
+msgstr "Выбрать сеанс"
+
+msgid "All cinemas"
+msgstr "Все кинотеатры"
+
+msgid "Hall"
+msgstr "Зал"
+
+msgid "No showtimes yet"
+msgstr "Сеансов пока нет"
+
+msgid "New sessions will appear here soon."
+msgstr "Новые сеансы скоро появятся."
+
+msgid "Watched"
+msgstr "Просмотрено"
+
+msgid "Booked"
+msgstr "Забронировано"
+
+msgid "Cancel this booking?"
+msgstr "Отменить бронирование?"
+
+msgid "Cancel booking"
+msgstr "Отменить бронь"
+
+msgid "Seat"
+msgstr "Место"
+
+msgid "Choose your seats"
+msgstr "Выбрать места"
+
+msgid "Screen"
+msgstr "Экран"
+
+msgid "Taken"
+msgstr "Занято"
+
+msgid "Free"
+msgstr "Свободно"
+
+msgid "Your choice"
+msgstr "Ваш выбор"
+
+msgid "Date"
+msgstr "Дата"
+
+msgid "Time"
+msgstr "Время"
+
+msgid "Price per seat"
+msgstr "Цена за место"
+
+msgid "Seats"
+msgstr "Места"
+
+msgid "Total"
+msgstr "Итого"
+
+msgid "Continue"
+msgstr "Продолжить"
+
+msgid "Genre"
+msgstr "Жанр"
+
+msgid "All genres"
+msgstr "Все жанры"
+
+msgid "Search movies"
+msgstr "Поиск фильма"
+
+msgid "Movie title"
+msgstr "Название фильма"
+
+msgid "Year"
+msgstr "Год"
+
+msgid "All years"
+msgstr "Все годы"
+
+msgid "Sort by"
+msgstr "Сортировка"
+
+msgid "Title: A–Z"
+msgstr "Название: А–Я"
+
+msgid "Title: Z–A"
+msgstr "Название: Я–А"
+
+msgid "Year: newest first"
+msgstr "Год: новые сначала"
+
+msgid "Year: oldest first"
+msgstr "Год: старые сначала"
+
+msgid "Apply"
+msgstr "Применить"
+
+msgid "Reset"
+msgstr "Сбросить"
+
+msgid "Movies found"
+msgstr "Найдено фильмов"
+
+msgid "No movies found. Try other filters."
+msgstr "Фильмы не найдены. Попробуйте изменить фильтры."
+
+msgid "Confirm booking"
+msgstr "Подтвердить бронь"
+
+msgid "Back"
+msgstr "Назад"
+
+msgid "Overview"
+msgstr "Обзор"
+
+msgid "Active bookings"
+msgstr "Активные бронирования"
+
+msgid "Latest bookings"
+msgstr "Последние бронирования"
+
+msgid "Code"
+msgstr "Код"
+
+msgid "User"
+msgstr "Пользователь"
+
+msgid "Movie"
+msgstr "Фильм"
+
+msgid "Starts at"
+msgstr "Начало сеанса"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "No bookings yet."
+msgstr "Бронирований пока нет."
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Add new"
+msgstr "Добавить"
+
+msgid "Edit"
+msgstr "Изменить"
+
+msgid "Nothing here yet."
+msgstr "Пока ничего нет."
+
+msgid "Previous"
+msgstr "Назад"
+
+msgid "Next"
+msgstr "Далее"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Admin panel"
+msgstr "Админ-панель"
+
+msgid "Welcome back"
+msgstr "С возвращением"
+
+msgid "New here?"
+msgstr "У вас ещё нет аккаунта?"
+
+msgid "Create an account"
+msgstr "Создать аккаунт"
+
+msgid "Already have an account?"
+msgstr "Уже есть аккаунт?"
+
+msgid "My Profile"
+msgstr "Мой профиль"
+
+msgid "Username"
+msgstr "Имя пользователя"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "Date joined"
+msgstr "Дата регистрации"
+

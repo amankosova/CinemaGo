@@ -1,0 +1,611 @@
+[
+  {
+    "title_ru": "Дюна: Часть третья",
+    "year": 2026,
+    "duration_minutes": 140,
+    "age_rating": "16+",
+    "genres": [
+      "фантастика",
+      "драма",
+      "приключения"
+    ],
+    "director": "Дени Вильнёв",
+    "main_cast": [
+      "Тимоти Шаламе",
+      "Зендея",
+      "Флоренс Пью",
+      "Ребекка Фергюсон"
+    ],
+    "country": "США",
+    "description_ru": "Спустя годы правления Пол Атрейдес сталкивается с последствиями собственной власти. Угроза масштабного заговора заставляет его защищать будущее Империума и близких.",
+    "source_url": "",
+    "title_en": "Dune: Part Three",
+    "title_kk": "Дюна: Үшінші бөлім",
+    "description_en": "After years in power, Paul Atreides faces the consequences of his rule. A growing conspiracy threatens the Imperium and the people closest to him.",
+    "description_kk": "Билікте бірнеше жыл отырған Пол Атрейдес өз шешімдерінің салдарымен бетпе-бет келеді. Күшейген астыртын әрекет Империумға және оның жақындарына қауіп төндіреді.",
+    "genres_localized": [
+      {
+        "ru": "фантастика",
+        "en": "Science fiction",
+        "kk": "Ғылыми фантастика"
+      },
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      },
+      {
+        "ru": "приключения",
+        "en": "Adventure",
+        "kk": "Шытырман оқиға"
+      }
+    ]
+  },
+  {
+    "title_ru": "Бажа кинода",
+    "year": 2026,
+    "duration_minutes": 100,
+    "age_rating": "16+",
+    "genres": [
+      "комедия"
+    ],
+    "director": "Олжас Нұрбай",
+    "main_cast": [
+      "Марат Оралғазин",
+      "Еркебұлан Мырзабек",
+      "Шерхан Пірназар"
+    ],
+    "country": "Казахстан",
+    "description_ru": "Трое бажа замечают, что привычная семейная жизнь перестала приносить радость. Желание их жён изменить мужей приводит к неожиданным и смешным последствиям.",
+    "source_url": "https://ticketon.kz/en/cinema/event/tckt2-bazha-kinoda",
+    "title_en": "Bazha Kinoda",
+    "title_kk": "Бажа кинода",
+    "description_en": "Three brothers-in-law find that everyday family life has lost its spark. When their wives wish for change, unexpected and funny consequences follow.",
+    "description_kk": "Үш бажа күнделікті отбасылық өмірдің қызығы азайғанын байқайды. Әйелдері күйеулерінің өзгеруін қалағанда, күтпеген әрі күлкілі оқиғалар басталады.",
+    "genres_localized": [
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      }
+    ]
+  },
+  {
+    "title_ru": "Заманback 2",
+    "year": 2026,
+    "duration_minutes": 90,
+    "age_rating": "18+",
+    "genres": [
+      "драма",
+      "комедия"
+    ],
+    "director": "Дархан Саркенов",
+    "main_cast": [
+      "Рамазан Амантай",
+      "Бакытгуль Серикбаева",
+      "Жасулан Айтен"
+    ],
+    "country": "Казахстан",
+    "description_ru": "Азамат неожиданно переносится в 1992 год и встречает молодого отца. Знакомство с его прошлым меняет взгляды героя на семью, дружбу и любовь.",
+    "source_url": "https://ticketon.kz/en/cinema/event/tckt2-zamanback-2",
+    "title_en": "Zamanback 2",
+    "title_kk": "Заманback 2",
+    "description_en": "Azamat unexpectedly travels back to 1992 and meets his father as a young man. What he learns changes the way he sees family, friendship and love.",
+    "description_kk": "Азамат күтпеген жерден 1992 жылға тап болып, жас кезіндегі әкесімен кездеседі. Өткенді тану оның отбасы, достық және махаббат туралы ойларын өзгертеді.",
+    "genres_localized": [
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      },
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      }
+    ]
+  },
+  {
+    "title_ru": "Бауыр",
+    "year": 2026,
+    "duration_minutes": 100,
+    "age_rating": "14+",
+    "genres": [
+      "комедия",
+      "драма",
+      "приключения"
+    ],
+    "director": "Асет Жұмақан",
+    "main_cast": [
+      "Жанболат Найзабеков",
+      "Қуандық Жүніс",
+      "Шәкірат Елемес",
+      "Шыңғыс Рәш"
+    ],
+    "country": "Казахстан",
+    "description_ru": "Трое друзей едут из Кокшетау в Алматы. Неожиданные встречи превращают поездку в испытание дружбы, а один из героев надеется найти давно потерянного человека.",
+    "source_url": "https://ticketon.kz/en/cinema/event/bauyr-kz",
+    "title_en": "Bauyr",
+    "title_kk": "Бауыр",
+    "description_en": "Three friends travel from Kokshetau to Almaty. Unexpected encounters test their friendship, while one of them hopes to find someone he lost long ago.",
+    "description_kk": "Үш дос Көкшетаудан Алматыға жолға шығады. Күтпеген кездесулер олардың достығын сынайды, ал бірі көптен бері жоғалтқан адамын табуды армандайды.",
+    "genres_localized": [
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      },
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      },
+      {
+        "ru": "приключения",
+        "en": "Adventure",
+        "kk": "Шытырман оқиға"
+      }
+    ]
+  },
+  {
+    "title_ru": "Кот в шляпе",
+    "year": 2026,
+    "duration_minutes": 107,
+    "age_rating": "6+",
+    "genres": [
+      "мультфильм",
+      "фэнтези",
+      "комедия",
+      "приключения",
+      "семейный"
+    ],
+    "director": "Эрика Ривинойя, Алессандро Карлони",
+    "main_cast": [
+      "Бовэнь Ян",
+      "Америка Феррера",
+      "Билл Хейдер"
+    ],
+    "country": "США",
+    "description_ru": "Необычный Кот из Института воображения приходит на помощь брату и сестре, которым скучно. Его методы превращают обычный день в фантастическое приключение.",
+    "source_url": "https://afisha.yandex.kz/almaty/cinema/kot-v-shlyape",
+    "title_en": "The Cat in the Hat",
+    "title_kk": "Қалпақ киген мысық",
+    "description_en": "An extraordinary Cat from the Institute of Imagination helps a bored brother and sister. His unusual ideas turn an ordinary day into a wild adventure.",
+    "description_kk": "Қиял институтынан келген ерекше Мысық іші пысқан ағалы-қарындасқа көмектеспек болады. Оның тосын тәсілдері қарапайым күнді қызықты оқиғаға айналдырады.",
+    "genres_localized": [
+      {
+        "ru": "мультфильм",
+        "en": "Animation",
+        "kk": "Мультфильм"
+      },
+      {
+        "ru": "фэнтези",
+        "en": "Fantasy",
+        "kk": "Фэнтези"
+      },
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      },
+      {
+        "ru": "приключения",
+        "en": "Adventure",
+        "kk": "Шытырман оқиға"
+      },
+      {
+        "ru": "семейный",
+        "en": "Family",
+        "kk": "Отбасылық"
+      }
+    ]
+  },
+  {
+    "title_ru": "Шымыр",
+    "year": 2026,
+    "duration_minutes": 90,
+    "age_rating": "18+",
+    "genres": [
+      "боевик",
+      "триллер",
+      "приключения"
+    ],
+    "director": "Анвар Матжанов",
+    "main_cast": [
+      "Еркебулан Даиров",
+      "Ақбота-Нұр",
+      "Азамат Сатыбалды"
+    ],
+    "country": "Казахстан",
+    "description_ru": "Главный герой оказывается втянут в противостояние с могущественной преступной группировкой. Он решает вмешаться и защитить тех, кто не может постоять за себя.",
+    "source_url": "https://ticketon.kz/cinema/event/tckt2-shymyr",
+    "title_en": "Shymyr",
+    "title_kk": "Шымыр",
+    "description_en": "A man becomes caught in a conflict with a powerful criminal group. He chooses to stand up for those who cannot protect themselves.",
+    "description_kk": "Басты кейіпкер ықпалды қылмыстық топпен қақтығысқа тап болады. Ол өзін қорғай алмайтын адамдарға араша түсуге бел буады.",
+    "genres_localized": [
+      {
+        "ru": "боевик",
+        "en": "Action",
+        "kk": "Экшн"
+      },
+      {
+        "ru": "триллер",
+        "en": "Thriller",
+        "kk": "Триллер"
+      },
+      {
+        "ru": "приключения",
+        "en": "Adventure",
+        "kk": "Шытырман оқиға"
+      }
+    ]
+  },
+  {
+    "title_ru": "Қара түйін",
+    "year": 2026,
+    "duration_minutes": 84,
+    "age_rating": "18+",
+    "genres": [
+      "детектив",
+      "триллер",
+      "ужасы"
+    ],
+    "director": "Илгиз Куватбек, Шамилбек Бекболсун уулу",
+    "main_cast": [
+      "Назира Мамбетова",
+      "Эльдияр Джарашев",
+      "Шаршекуль Аманова"
+    ],
+    "country": "Кыргызстан",
+    "description_ru": "В отрезанной от мира деревне пропадает автобус с детьми. Жители обвиняют мистические силы, но расследование ведёт к пугающей тайне.",
+    "source_url": "https://ticketon.kz/en/cinema/event/qara-tuyin-kz",
+    "title_en": "Qara Tuyin",
+    "title_kk": "Қара түйін",
+    "description_en": "A bus carrying children disappears near an isolated village. While locals blame mysterious forces, an investigation uncovers a troubling secret.",
+    "description_kk": "Оқшау ауыл маңында балалар мінген автобус жоғалып кетеді. Тұрғындар жұмбақ күштерді кінәлағанымен, тергеу жасырын құпияға алып келеді.",
+    "genres_localized": [
+      {
+        "ru": "детектив",
+        "en": "Mystery",
+        "kk": "Детектив"
+      },
+      {
+        "ru": "триллер",
+        "en": "Thriller",
+        "kk": "Триллер"
+      },
+      {
+        "ru": "ужасы",
+        "en": "Horror",
+        "kk": "Қорқынышты фильм"
+      }
+    ]
+  },
+  {
+    "title_ru": "Құдірет",
+    "year": 2026,
+    "duration_minutes": 76,
+    "age_rating": "12+",
+    "genres": [
+      "драма"
+    ],
+    "director": "Талгад Жаныбеков",
+    "main_cast": [
+      "Жангельды Молдахметов",
+      "Асель Кусаева",
+      "Тунгышбай Жаманкулов"
+    ],
+    "country": "Казахстан",
+    "description_ru": "Успешный кардиохирург Аян после тяжёлой профессиональной ошибки вынужден пересмотреть свои убеждения. Встреча с женщиной, чей сын серьёзно болен, меняет его отношение к ответственности и жизни.",
+    "source_url": "https://ticketon.kz/en/cinema/event/qudiret-kz",
+    "title_en": "Qudiret",
+    "title_kk": "Құдірет",
+    "description_en": "After a serious professional mistake, successful heart surgeon Ayan rethinks his beliefs. Meeting a mother whose son is seriously ill changes his view of responsibility.",
+    "description_kk": "Кәсіби ауыр қателіктен кейін кардиохирург Аян өмірге деген көзқарасын қайта қарастырады. Ауыр науқас баланың анасымен танысуы оның жауапкершілік туралы түсінігін өзгертеді.",
+    "genres_localized": [
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      }
+    ]
+  },
+  {
+    "title_ru": "Кит: Во тьме глубин",
+    "year": 2026,
+    "duration_minutes": 106,
+    "age_rating": "16+",
+    "genres": [
+      "триллер",
+      "драма"
+    ],
+    "director": "Брайан Даффилд",
+    "main_cast": [
+      "Остин Абрамс",
+      "Джош Бролин",
+      "Эмили Радд",
+      "Элизабет Шу"
+    ],
+    "country": "США",
+    "description_ru": "Во время погружения дайвер попадает в смертельно опасную ситуацию в океане. Чтобы выжить, ему необходимо быстро найти выход, пока запас кислорода не иссяк.",
+    "source_url": "https://ticketon.kz/cinema/event/tckt2-kit-vo-tme-glubin",
+    "title_en": "Whalefall",
+    "title_kk": "Кит: Терең қараңғылықта",
+    "description_en": "A diver finds himself trapped in a life-threatening situation beneath the ocean. He must find a way out before his oxygen runs out.",
+    "description_kk": "Сүңгуір мұхит тереңінде өміріне қауіп төнген жағдайға тап болады. Оттегі таусылмай тұрып, ол аман шығудың жолын табуы керек.",
+    "genres_localized": [
+      {
+        "ru": "триллер",
+        "en": "Thriller",
+        "kk": "Триллер"
+      },
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      }
+    ]
+  },
+  {
+    "title_ru": "Зверь",
+    "year": 2026,
+    "duration_minutes": 99,
+    "age_rating": "18+",
+    "genres": [
+      "боевик",
+      "триллер",
+      "драма"
+    ],
+    "director": "Ренни Харлин",
+    "main_cast": [
+      "Сэмюэл Л. Джексон",
+      "Юэль Киннаман",
+      "Гай Бёрнет"
+    ],
+    "country": "США, Великобритания",
+    "description_ru": "Во время попытки государственного переворота президент США оказывается за рулём бронированного автомобиля. Ему предстоит защитить близких и остановить опасных противников.",
+    "source_url": "https://afisha.yandex.kz/almaty/cinema/zver-2026",
+    "title_en": "The Beast",
+    "title_kk": "Аң",
+    "description_en": "During an attempted coup, the US president faces danger in an armored vehicle. He must protect his family and confront powerful enemies.",
+    "description_kk": "Мемлекеттік төңкеріс әрекеті кезінде АҚШ президенті брондалған көлікте қауіпті жағдайға тап болады. Ол отбасын қорғап, қарсыластарына төтеп беруі тиіс.",
+    "genres_localized": [
+      {
+        "ru": "боевик",
+        "en": "Action",
+        "kk": "Экшн"
+      },
+      {
+        "ru": "триллер",
+        "en": "Thriller",
+        "kk": "Триллер"
+      },
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      }
+    ]
+  },
+  {
+    "title_ru": "Остров забвения",
+    "year": 2026,
+    "duration_minutes": 109,
+    "age_rating": "6+",
+    "genres": [
+      "мультфильм",
+      "фэнтези",
+      "комедия",
+      "приключения",
+      "семейный"
+    ],
+    "director": "Джоэль Кроуфорд, Хануэль Меркадо",
+    "main_cast": [
+      "Дэйв Франко",
+      "Дженни Слейт",
+      "Мэнни Хасинто"
+    ],
+    "country": "США",
+    "description_ru": "Две подруги оказываются в необычном мире, где дорога домой связана с угрозой потерять важные воспоминания. Им предстоит решить, что для них действительно ценно.",
+    "source_url": "https://ticketon.uz/cinema/event/tckt2-ostrov-zabveniya-uz",
+    "title_en": "Forgotten Island",
+    "title_kk": "Ұмытылған арал",
+    "description_en": "Two friends enter a strange world where getting home may mean losing precious memories. They must decide what matters most to them.",
+    "description_kk": "Екі құрбы үйге оралу жолы қымбат естеліктерін жоғалтумен байланысты ерекше әлемге түседі. Олар өздері үшін ненің ең маңызды екенін шешуі керек.",
+    "genres_localized": [
+      {
+        "ru": "мультфильм",
+        "en": "Animation",
+        "kk": "Мультфильм"
+      },
+      {
+        "ru": "фэнтези",
+        "en": "Fantasy",
+        "kk": "Фэнтези"
+      },
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      },
+      {
+        "ru": "приключения",
+        "en": "Adventure",
+        "kk": "Шытырман оқиға"
+      },
+      {
+        "ru": "семейный",
+        "en": "Family",
+        "kk": "Отбасылық"
+      }
+    ]
+  },
+  {
+    "title_ru": "Сумерки. Сага. Затмение",
+    "year": 2010,
+    "duration_minutes": 124,
+    "age_rating": "16+",
+    "genres": [
+      "мелодрама",
+      "фэнтези",
+      "триллер",
+      "драма"
+    ],
+    "director": "Дэвид Слэйд",
+    "main_cast": [
+      "Кристен Стюарт",
+      "Роберт Паттинсон",
+      "Тейлор Лотнер"
+    ],
+    "country": "США",
+    "description_ru": "Белла оказывается перед выбором на фоне новой опасности для жителей Сиэтла. Конфликт между вампирами и оборотнями угрожает её близким.",
+    "source_url": "https://ticketon.kz/kz/cinema/event/sumerki-saga-zatmenie-2010-open-cinema-almaty",
+    "title_en": "The Twilight Saga: Eclipse",
+    "title_kk": "Ымырт. Сага. Тұтылу",
+    "description_en": "Bella faces a difficult choice as a new danger threatens Seattle. Rising tensions between vampires and werewolves put those she loves at risk.",
+    "description_kk": "Сиэтлге жаңа қауіп төнген кезде Белла қиын таңдау алдында қалады. Вампирлер мен қасқыр-адамдар арасындағы шиеленіс оның жақындарына қауіп төндіреді.",
+    "genres_localized": [
+      {
+        "ru": "мелодрама",
+        "en": "Romance",
+        "kk": "Мелодрама"
+      },
+      {
+        "ru": "фэнтези",
+        "en": "Fantasy",
+        "kk": "Фэнтези"
+      },
+      {
+        "ru": "триллер",
+        "en": "Thriller",
+        "kk": "Триллер"
+      },
+      {
+        "ru": "драма",
+        "en": "Drama",
+        "kk": "Драма"
+      }
+    ]
+  },
+  {
+    "title_ru": "Роллинг Лауд. Дикое веселье",
+    "year": 2026,
+    "duration_minutes": 110,
+    "age_rating": "18+",
+    "genres": [
+      "комедия",
+      "музыкальный"
+    ],
+    "director": "Джереми Гарелик",
+    "main_cast": [
+      "Оуэн Уилсон",
+      "Трэвис Скотт",
+      "Мэтт Райф",
+      "Кристиан Конвери"
+    ],
+    "country": "США",
+    "description_ru": "Отец тайно приводит сына-подростка на огромный музыкальный фестиваль, пытаясь стать ближе к нему. Внезапно семейная вылазка превращается в хаотичное приключение.",
+    "source_url": "https://ticketon.kz/kz/cinema/event/rolling-laud-dikoe-veselie-kz",
+    "title_en": "Rolling Loud",
+    "title_kk": "Роллинг Лауд. Жабайы көңіл көтеру",
+    "description_en": "A father secretly takes his teenage son to a major music festival, hoping to reconnect with him. Their trip quickly becomes a chaotic adventure.",
+    "description_kk": "Әкесі жасөспірім ұлымен жақындасу үшін оны жасырын түрде үлкен музыка фестиваліне алып барады. Олардың сапары күтпеген шытырман оқиғаға айналады.",
+    "genres_localized": [
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      },
+      {
+        "ru": "музыкальный",
+        "en": "Music",
+        "kk": "Музыкалық"
+      }
+    ]
+  },
+  {
+    "title_ru": "Клэйфейс",
+    "year": 2026,
+    "duration_minutes": 105,
+    "age_rating": "18+",
+    "genres": [
+      "хоррор",
+      "фантастика",
+      "боевик"
+    ],
+    "director": "Джеймс Уоткинс",
+    "main_cast": [
+      "Эдди Марсан",
+      "Наоми Аки",
+      "Макс Мингелла"
+    ],
+    "country": "Великобритания, США",
+    "description_ru": "Актёр Мэтт Хейген соглашается на экспериментальное лечение после травмы. Неудачная процедура меняет его тело и приводит к потере прежней личности.",
+    "source_url": "https://ticketon.kz/cinema/event/tckt2-kleyfeys",
+    "title_en": "Clayface",
+    "title_kk": "Клэйфейс",
+    "description_en": "After an injury, actor Matt Hagen agrees to an experimental treatment. The procedure changes his life in ways he never expected.",
+    "description_kk": "Жарақат алған актер Мэтт Хейген тәжірибелік ем қабылдауға келіседі. Бірақ бұл шешім оның өмірін күтпеген бағытқа өзгертеді.",
+    "genres_localized": [
+      {
+        "ru": "хоррор",
+        "en": "Horror",
+        "kk": "Қорқынышты фильм"
+      },
+      {
+        "ru": "фантастика",
+        "en": "Science fiction",
+        "kk": "Ғылыми фантастика"
+      },
+      {
+        "ru": "боевик",
+        "en": "Action",
+        "kk": "Экшн"
+      }
+    ]
+  },
+  {
+    "title_ru": "Маленькие демоны путешествуют на Запад",
+    "year": 2025,
+    "duration_minutes": 118,
+    "age_rating": "16+",
+    "genres": [
+      "мультфильм",
+      "фэнтези",
+      "комедия",
+      "приключения"
+    ],
+    "director": "Юй Шуй",
+    "main_cast": [],
+    "country": "Китай",
+    "description_ru": "Несколько маленьких демонов решают выдать себя за знаменитых героев путешествия на Запад. Их хитрый план оборачивается неожиданным путешествием и проверкой дружбы.",
+    "source_url": "https://afisha.yandex.kz/almaty/cinema/malenkie-demony-puteshestvuiut-na-zapad",
+    "title_en": "Little Demons Journey to the West",
+    "title_kk": "Кішкентай жындар Батысқа сапар шегеді",
+    "description_en": "A group of small demons pretend to be famous heroes from Journey to the West. Their trick leads to an unexpected adventure that tests their friendship.",
+    "description_kk": "Бірнеше кішкентай жын «Батысқа саяхат» ертегісінің атақты кейіпкерлерінің кейпіне енеді. Олардың айласы достықты сынайтын қызықты сапарға ұласады.",
+    "genres_localized": [
+      {
+        "ru": "мультфильм",
+        "en": "Animation",
+        "kk": "Мультфильм"
+      },
+      {
+        "ru": "фэнтези",
+        "en": "Fantasy",
+        "kk": "Фэнтези"
+      },
+      {
+        "ru": "комедия",
+        "en": "Comedy",
+        "kk": "Комедия"
+      },
+      {
+        "ru": "приключения",
+        "en": "Adventure",
+        "kk": "Шытырман оқиға"
+      }
+    ]
+  }
+]

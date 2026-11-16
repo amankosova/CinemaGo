@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Movies | {% endblock %}
+{% block content %}
+{% get_current_language as LANGUAGE_CODE %}
+<section class="section">
+  <div class="container">
+    <div class="section-head"><h1>{% trans "Movies" %}</h1></div>
+
+    <form class="movie-filters" method="get" action="{% url 'movie_list' %}">
+      <label>
+        <span>{% trans "Search movies" %}</span>
+        <input type="search" name="q" value="{{ search_query }}" placeholder="{% trans 'Movie title' %}">
+      </label>
+      <label>
+        <span>{% trans "Genre" %}</span>
+        <select name="genre">
+          <option value="">{% trans "All genres" %}</option>
+          {% for genre in genres %}
+            <option value="{{ genre.pk }}" {% if selected_genre == genre.pk|stringformat:'s' %}selected{% endif %}>{{ genre.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>{% trans "Cinema" %}</span>
+        <select name="cinema">
+          <option value="">{% trans "All cinemas" %}</option>
+          {% for cinema in cinemas %}<option value="{{ cinema.pk }}" {% if selected_cinema == cinema.pk|stringformat:'s' %}selected{% endif %}>{{ cinema.name }}</option>{% endfor %}
+        </select>
+      </label>
+      <label>
+        <span>{% trans "Sort by" %}</span>
+        <select name="sort">
+          <option value="title_asc" {% if selected_sort == 'title_asc' %}selected{% endif %}>{% trans "Title: A–Z" %}</option>
+          <option value="title_desc" {% if selected_sort == 'title_desc' %}selected{% endif %}>{% trans "Title: Z–A" %}</option>
+          <option value="year_new" {% if selected_sort == 'year_new' %}selected{% endif %}>{% trans "Year: newest first" %}</option>
+          <option value="year_old" {% if selected_sort == 'year_old' %}selected{% endif %}>{% trans "Year: oldest first" %}</option>
+          <option value="duration_short" {% if selected_sort == 'duration_short' %}selected{% endif %}>{% if LANGUAGE_CODE == 'kk' %}Ұзақтығы: қысқадан ұзаққа{% elif LANGUAGE_CODE == 'ru' %}Длительность: сначала короткие{% else %}Duration: shortest first{% endif %}</option>
+          <option value="duration_long" {% if selected_sort == 'duration_long' %}selected{% endif %}>{% if LANGUAGE_CODE == 'kk' %}Ұзақтығы: ұзақтан қысқаға{% elif LANGUAGE_CODE == 'ru' %}Длительность: сначала длинные{% else %}Duration: longest first{% endif %}</option>
+        </select>
+      </label>
+      <div class="movie-filter-actions">
+        <button class="btn" type="submit">{% trans "Apply" %}</button>
+        <a class="btn btn-soft" href="{% url 'movie_list' %}">{% trans "Reset" %}</a>
+      </div>
+    </form>
+
+    <p class="movie-filter-count">{% trans "Movies found" %}: {{ movies|length }}</p>
+    <div class="poster-grid">
+      {% for movie in movies %}
+        {% include 'cinema/_movie_tile.html' %}
+      {% empty %}
+        <p>{% trans "No movies found. Try other filters." %}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<style>
+  .movie-filters { display:flex; flex-wrap:wrap; align-items:end; gap:12px; margin:20px 0; padding:20px; border-radius:18px; background:#e1f3f1; }
+  .movie-filters label { display:flex; flex-direction:column; gap:6px; flex:1 1 155px; font-size:14px; font-weight:600; color:#254449; }
+  .movie-filters input, .movie-filters select { width:100%; min-height:43px; padding:9px 12px; border:1px solid #a8d4cf; background:white; color:#173b3d; border-radius:9px; font:inherit; }
+  .movie-filter-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+  .movie-filter-count { margin:12px 0 20px; color:#50686d; }
+</style>
+{% endblock %}

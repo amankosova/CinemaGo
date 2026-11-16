@@ -1,0 +1,366 @@
+# Kazakh translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-11-13 18:29+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: kk\n"
+"Language-Team: kk <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+msgid "Page not found"
+msgstr "Page not found"
+
+msgid "The page you are looking for does not exist or was moved."
+msgstr "The page you are looking for does not exist or was moved."
+
+msgid "Back to home"
+msgstr "Back to home"
+
+msgid "This page is for staff only"
+msgstr "This page is for staff only"
+
+msgid "Your account does not have access to the admin panel."
+msgstr "Your account does not have access to the admin panel."
+
+msgid "Home"
+msgstr "Басты бет"
+
+msgid "Main navigation"
+msgstr "Негізгі мәзір"
+
+msgid "Movies"
+msgstr "Фильмдер"
+
+msgid "Language"
+msgstr "Тіл"
+
+msgid "My Tickets"
+msgstr "Менің билеттерім"
+
+msgid "Admin Panel"
+msgstr "Әкімші панелі"
+
+msgid "Profile"
+msgstr "Профиль"
+
+msgid "Log out"
+msgstr "Шығу"
+
+msgid "Log in"
+msgstr "Кіру"
+
+msgid "Sign up"
+msgstr "Тіркелу"
+
+msgid "min"
+msgstr "мин"
+
+msgid "Movie details"
+msgstr "Фильм туралы ақпарат"
+
+msgid "Director"
+msgstr "Режиссер"
+
+msgid "View showtimes"
+msgstr "Сеанстарды көру"
+
+msgid "My tickets"
+msgstr "Менің билеттерім"
+
+msgid "You have no tickets yet"
+msgstr "Сізде әзірге билеттер жоқ"
+
+msgid "Pick a movie and your first booking will show up here."
+msgstr "Фильм таңдаңыз, брондауыңыз осында пайда болады."
+
+msgid "Browse movies"
+msgstr "Фильмдерді көру"
+
+msgid "Upcoming"
+msgstr "Алдағы"
+
+msgid "Past"
+msgstr "Өткен"
+
+msgid "Cancelled"
+msgstr "Бас тартылған"
+
+msgid "Your seat is waiting."
+msgstr "Сіздің орныңыз сізді күтуде."
+
+msgid "Find your next cinema experience with CinemaGo."
+msgstr "CinemaGo арқылы келесі фильміңізді таңдаңыз."
+
+msgid "Explore movies"
+msgstr "Фильмдерді көру"
+
+msgid "Now Showing"
+msgstr "Қазір кинотеатрларда"
+
+msgid "All movies"
+msgstr "Барлық фильмдер"
+
+msgid "No movies yet."
+msgstr "Әзірге фильмдер жоқ."
+
+msgid "Our Cinemas"
+msgstr "Біздің кинотеатрлар"
+
+msgid "Cinemas will appear here soon."
+msgstr "Кинотеатрлар жақында пайда болады."
+
+msgid "How it works"
+msgstr "Қалай жұмыс істейді"
+
+msgid "Choose a movie"
+msgstr "Фильм таңдаңыз"
+
+msgid "Select your seats"
+msgstr "Орындарды таңдаңыз"
+
+msgid "Confirm your booking"
+msgstr "Брондауды растаңыз"
+
+msgid "Cast"
+msgstr "Басты рөлдерде"
+
+msgid "Country"
+msgstr "Ел"
+
+msgid "Choose a showtime"
+msgstr "Сеанс таңдау"
+
+msgid "All cinemas"
+msgstr "Барлық кинотеатрлар"
+
+msgid "Hall"
+msgstr "Зал"
+
+msgid "No showtimes yet"
+msgstr "Әзірге сеанстар жоқ"
+
+msgid "New sessions will appear here soon."
+msgstr "Жаңа сеанстар жақында пайда болады."
+
+msgid "Watched"
+msgstr "Көрілген"
+
+msgid "Booked"
+msgstr "Брондалған"
+
+msgid "Cancel this booking?"
+msgstr "Брондаудан бас тартасыз ба?"
+
+msgid "Cancel booking"
+msgstr "Брондаудан бас тарту"
+
+msgid "Seat"
+msgstr "Орын"
+
+msgid "Choose your seats"
+msgstr "Орындарды таңдаңыз"
+
+msgid "Screen"
+msgstr "Экран"
+
+msgid "Taken"
+msgstr "Бос емес"
+
+msgid "Free"
+msgstr "Бос"
+
+msgid "Your choice"
+msgstr "Сіздің таңдауыңыз"
+
+msgid "Date"
+msgstr "Күні"
+
+msgid "Time"
+msgstr "Уақыты"
+
+msgid "Price per seat"
+msgstr "Бір орын бағасы"
+
+msgid "Seats"
+msgstr "Орындар"
+
+msgid "Total"
+msgstr "Барлығы"
+
+msgid "Continue"
+msgstr "Жалғастыру"
+
+msgid "Showtimes"
+msgstr "Showtimes"
+
+msgid "Movie, cinema or showtime"
+msgstr "Movie, cinema or showtime"
+
+msgid "Type a title, cinema or city"
+msgstr "Type a title, cinema or city"
+
+msgid "Genre"
+msgstr "Жанр"
+
+msgid "All genres"
+msgstr "Барлық жанрлар"
+
+msgid "Search"
+msgstr "Search"
+
+msgid "Nothing found"
+msgstr "Nothing found"
+
+msgid "Try a different word or clear the filters."
+msgstr "Try a different word or clear the filters."
+
+msgid "Clear filters"
+msgstr "Clear filters"
+
+msgid "Cinemas"
+msgstr "Cinemas"
+
+msgid "Choose seats"
+msgstr "Choose seats"
+
+msgid "Search movies"
+msgstr "Фильм іздеу"
+
+msgid "Movie title"
+msgstr "Фильм атауы"
+
+msgid "Year"
+msgstr "Жыл"
+
+msgid "All years"
+msgstr "Барлық жылдар"
+
+msgid "Sort by"
+msgstr "Сұрыптау"
+
+msgid "Title: A–Z"
+msgstr "Атауы: А–Я"
+
+msgid "Title: Z–A"
+msgstr "Атауы: Я–А"
+
+msgid "Year: newest first"
+msgstr "Жылы: жаңасынан"
+
+msgid "Year: oldest first"
+msgstr "Жылы: ескісінен"
+
+msgid "Apply"
+msgstr "Қолдану"
+
+msgid "Reset"
+msgstr "Тазалау"
+
+msgid "Movies found"
+msgstr "Табылған фильмдер"
+
+msgid "No movies found. Try other filters."
+msgstr "Фильм табылмады. Сүзгілерді өзгертіп көріңіз."
+
+msgid "Confirm booking"
+msgstr "Брондауды растау"
+
+msgid "Back"
+msgstr "Артқа"
+
+msgid "Overview"
+msgstr "Шолу"
+
+msgid "Active bookings"
+msgstr "Белсенді брондаулар"
+
+msgid "Latest bookings"
+msgstr "Соңғы брондаулар"
+
+msgid "Code"
+msgstr "Код"
+
+msgid "User"
+msgstr "Пайдаланушы"
+
+msgid "Movie"
+msgstr "Фильм"
+
+msgid "Starts at"
+msgstr "Басталу уақыты"
+
+msgid "Status"
+msgstr "Күйі"
+
+msgid "No bookings yet."
+msgstr "Әзірге брондаулар жоқ."
+
+msgid "Delete"
+msgstr "Жою"
+
+msgid "Are you sure you want to delete this item?"
+msgstr "Are you sure you want to delete this item?"
+
+msgid "Yes, delete"
+msgstr "Yes, delete"
+
+msgid "Cancel"
+msgstr "Бас тарту"
+
+msgid "Add new"
+msgstr "Қосу"
+
+msgid "Edit"
+msgstr "Өзгерту"
+
+msgid "Nothing here yet."
+msgstr "Әзірге ештеңе жоқ."
+
+msgid "Previous"
+msgstr "Алдыңғы"
+
+msgid "Next"
+msgstr "Келесі"
+
+msgid "Save"
+msgstr "Сақтау"
+
+msgid "Admin panel"
+msgstr "Әкімші панелі"
+
+msgid "Welcome back"
+msgstr "Қош келдіңіз"
+
+msgid "New here?"
+msgstr "Аккаунтыңыз жоқ па?"
+
+msgid "Create an account"
+msgstr "Аккаунт ашу"
+
+msgid "Already have an account?"
+msgstr "Аккаунтыңыз бар ма?"
+
+msgid "My Profile"
+msgstr "Менің профилім"
+
+msgid "Username"
+msgstr "Пайдаланушы аты"
+
+msgid "Email"
+msgstr "Электрондық пошта"
+
+msgid "Date joined"
+msgstr "Тіркелген күні"
+

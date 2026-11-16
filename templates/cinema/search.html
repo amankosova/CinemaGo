@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Showtimes" %} | {% endblock %}
+
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h1>{% trans "Showtimes" %}</h1>
+
+    <form class="filter-bar" method="get" action="{% url 'search' %}">
+      <div>
+        <label for="q">{% trans "Movie, cinema or showtime" %}</label>
+        <input class="input" id="q" type="search" name="q" value="{{ q }}" placeholder="{% trans 'Type a title, cinema or city' %}">
+      </div>
+      <div>
+        <label for="genre">{% trans "Genre" %}</label>
+        <select class="input" id="genre" name="genre">
+          <option value="">{% trans "All genres" %}</option>
+          {% for genre in genres %}
+            <option value="{{ genre.id }}" {% if selected_genre == genre.id|stringformat:'s' %}selected{% endif %}>{{ genre.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="date">{% trans "Date" %}</label>
+        <input class="input" id="date" type="date" name="date" value="{{ date }}">
+      </div>
+      <button class="btn" type="submit">{% trans "Search" %}</button>
+    </form>
+
+    {% if not movies and not cinemas and not showtimes %}
+      <div class="empty">
+        <h2>{% trans "Nothing found" %}</h2>
+        <p>{% trans "Try a different word or clear the filters." %}</p>
+        <a class="btn btn-soft" href="{% url 'search' %}">{% trans "Clear filters" %}</a>
+      </div>
+    {% else %}
+
+      {% if movies %}
+        <div class="result-group">
+          <h2>{% trans "Movies" %} <span class="count-pill">{{ movies|length }}</span></h2>
+          <div class="poster-grid">
+            {% for movie in movies %}{% include "cinema/_movie_tile.html" %}{% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if cinemas %}
+        <div class="result-group">
+          <h2>{% trans "Cinemas" %} <span class="count-pill">{{ cinemas|length }}</span></h2>
+          <div class="cinema-list">
+            {% for cinema in cinemas %}
+              <div class="cinema-card">
+                <h3>{{ cinema.name }}</h3>
+                <div>{{ cinema.city }}</div>
+                <div class="muted small">{{ cinema.address }}</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if showtimes %}
+        <div class="result-group">
+          <h2>{% trans "Showtimes" %} <span class="count-pill">{{ showtimes|length }}</span></h2>
+          {% for s in showtimes %}
+            <div class="showtime-row">
+              <div class="when">{{ s.starts_at|date:"j M, H:i" }}</div>
+              <div class="what">
+                <strong>{{ s.movie.title }}</strong><br>
+                <span class="muted small">{{ s.cinema.name }}, {% trans "Hall" %} {{ s.hall.name }} · {{ s.price }} ₸</span>
+              </div>
+              <a class="btn btn-small" href="{% url 'seat_select' s.pk %}">{% trans "Choose seats" %}</a>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
