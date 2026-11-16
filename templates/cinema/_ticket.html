@@ -7,19 +7,30 @@
       <div>{{ ticket.showtime.starts_at|date:"j E, D" }}, {{ ticket.showtime.starts_at|date:"H:i" }}</div>
       <div>{{ ticket.price }} ₸</div>
     </div>
-    {% if ticket.status == 'cancelled' %}
+    
+{% if ticket.status == 'refunded' %}
+  <span class="tag">
+    {% if LANGUAGE_CODE == 'ru' %}
+      Возвращено
+    {% elif LANGUAGE_CODE == 'kk' %}
+      Қайтарылды
+    {% else %}
+      Refunded
+    {% endif %}
+  </span>
+{% elif ticket.status == 'cancelled' %}
       <span class="tag">{% trans "Cancelled" %}</span>
     {% elif ticket.showtime.is_past %}
       <span class="tag">{% trans "Watched" %}</span>
-    {% else %}
-      <span class="tag ok">{% trans "Booked" %}</span>
-      {% trans "Cancel this booking?" as ask_text %}
-      <form method="post" action="{% url 'ticket_cancel' ticket.pk %}" style="display: inline; margin-left: 8px;"
-            onsubmit="return confirm('{{ ask_text|escapejs }}');">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-ghost btn-small">{% trans "Cancel booking" %}</button>
-      </form>
-    {% endif %}
+    {% elif ticket.reservation.status == 'paid' %}
+  <span class="tag ok">
+    {% if LANGUAGE_CODE == 'ru' %}Оплачено
+    {% elif LANGUAGE_CODE == 'kk' %}Төленді
+    {% else %}Paid{% endif %}
+  </span>
+{% else %}
+  <span class="tag ok">{% trans "Booked" %}</span>
+{% endif %}
   </div>
   <div class="ticket-stub">
     <div class="muted small">{% trans "Seat" %}</div>
@@ -35,4 +46,20 @@
       </details>
     {% endif %}
   </div>
+
+{% if ticket.status == 'booked' and ticket.reservation.status == 'paid' and not ticket.showtime.is_past %}
+  <form method="post" action="{% url 'ticket_refund' ticket.pk %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline"
+            onclick="return confirm('Вернуть билет? Это демо-возврат.')">
+      {% if LANGUAGE_CODE == 'ru' %}
+        Вернуть билет
+      {% elif LANGUAGE_CODE == 'kk' %}
+        Билетті қайтару
+      {% else %}
+        Refund ticket
+      {% endif %}
+    </button>
+  </form>
+{% endif %}
 </article>

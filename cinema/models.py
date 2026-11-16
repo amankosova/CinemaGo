@@ -180,10 +180,13 @@ class Ticket(models.Model):
     PENDING = "pending"
     BOOKED = "booked"
     CANCELLED = "cancelled"
+    REFUNDED = "refunded"
+
     STATUS_CHOICES = [
         (PENDING, "Pending payment"),
         (BOOKED, _("Booked")),
         (CANCELLED, _("Cancelled")),
+        (REFUNDED, "Refunded"),
     ]
 
     user = models.ForeignKey(

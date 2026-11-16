@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 {% load i18n %}
 
@@ -8,37 +9,82 @@
   <div class="container" style="max-width: 820px;">
     <h1>{% trans "My tickets" %}</h1>
 
-    {% if not upcoming and not past and not cancelled and not pending %}
+    {% if not upcoming and not past and not cancelled and not pending and not refunded %}
       <div class="empty">
         <h2>{% trans "You have no tickets yet" %}</h2>
         <p>{% trans "Pick a movie and your first booking will show up here." %}</p>
-        <a class="btn" href="{% url 'movie_list' %}">{% trans "Browse movies" %}</a>
+        <a class="btn" href="{% url 'movie_list' %}">
+          {% trans "Browse movies" %}
+        </a>
       </div>
     {% endif %}
 
     {% if pending %}
       <h2>{% trans "Pending payment" %}</h2>
       {% for ticket in pending %}
-      <div class="ticket"><div class="ticket-main"><h3>{{ ticket.showtime.movie.title }} · {{ ticket.seat.label }}</h3>
-        <p>{% trans "Payment pending" %} · {{ ticket.reservation.expires_at|date:"H:i" }}</p>
-        <a class="btn btn-small" href="{% url 'checkout' ticket.reservation_id %}">{% trans "Continue payment" %}</a>
-      </div></div>
+        <div class="ticket">
+          <div class="ticket-main">
+            <h3>{{ ticket.showtime.movie.title }} · {{ ticket.seat.label }}</h3>
+            <p>
+              {% trans "Payment pending" %} ·
+              {{ ticket.reservation.expires_at|date:"H:i" }}
+            </p>
+
+            <a class="btn btn-small"
+               href="{% url 'checkout' ticket.reservation_id %}">
+              {% trans "Continue payment" %}
+            </a>
+
+            <form method="post"
+                  action="{% url 'ticket_cancel' ticket.pk %}"
+                  style="display:inline; margin-left:8px;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-ghost btn-small">
+                {% trans "Cancel booking" %}
+              </button>
+            </form>
+          </div>
+        </div>
       {% endfor %}
     {% endif %}
+
     {% if upcoming %}
       <h2>{% trans "Upcoming" %}</h2>
-      {% for ticket in upcoming %}{% include "cinema/_ticket.html" %}{% endfor %}
+      {% for ticket in upcoming %}
+        {% include "cinema/_ticket.html" %}
+      {% endfor %}
     {% endif %}
 
     {% if past %}
       <h2 style="margin-top: 36px;">{% trans "Past" %}</h2>
-      {% for ticket in past %}{% include "cinema/_ticket.html" %}{% endfor %}
+      {% for ticket in past %}
+        {% include "cinema/_ticket.html" %}
+      {% endfor %}
+    {% endif %}
+
+    {% if refunded %}
+      <h2 style="margin-top: 36px;">
+        {% if LANGUAGE_CODE == 'ru' %}
+          Возвращённые билеты
+        {% elif LANGUAGE_CODE == 'kk' %}
+          Қайтарылған билеттер
+        {% else %}
+          Refunded tickets
+        {% endif %}
+      </h2>
+
+      {% for ticket in refunded %}
+        {% include "cinema/_ticket.html" %}
+      {% endfor %}
     {% endif %}
 
     {% if cancelled %}
       <h2 style="margin-top: 36px;">{% trans "Cancelled" %}</h2>
-      {% for ticket in cancelled %}{% include "cinema/_ticket.html" %}{% endfor %}
+      {% for ticket in cancelled %}
+        {% include "cinema/_ticket.html" %}
+      {% endfor %}
     {% endif %}
+
   </div>
 </section>
 {% endblock %}
