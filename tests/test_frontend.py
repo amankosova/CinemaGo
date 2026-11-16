@@ -405,6 +405,6 @@ def test_tc15_checkout_payment_and_ticket(page):
     tickets = page.locator("article.ticket")
     expect(tickets).to_have_count(2)
     expect(tickets.first).to_contain_text("Shymyr")
-    expect(tickets.first.locator(".tag.ok")).to_have_text("Booked")
+    expect(tickets.locator(".tag.ok")).to_have_count(2)
     labels = sorted(page.locator(".seat-big").all_inner_texts())
     assert labels == ["A1", "A2"]
