@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError, transaction
 from django.db.models import Q
-from django.http import HttpResponseNotAllowed
+from django.http import Http404, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
@@ -179,6 +179,8 @@ def checkout(request, order_id):
     expire_reservations()
     order = get_object_or_404(Reservation.objects.select_related('showtime__movie', 'showtime__hall__cinema'),
                               pk=order_id, user=request.user)
+    if order.tickets.exclude(user=request.user).exists():
+        raise Http404
     if order.status == 'paid':
         return redirect('my_tickets')
     if order.status != 'pending':
@@ -212,6 +214,8 @@ def booking_create(request, pk):
             expire_reservations()
             order = get_object_or_404(Reservation.objects.select_for_update(),
                                       pk=order_id, user=request.user, showtime_id=pk)
+            if order.tickets.exclude(user=request.user).exists():
+                raise Http404
             if order.status != 'pending' or order.expires_at <= timezone.now() or order.showtime.is_past:
                 messages.error(request, 'The ten-minute reservation has expired.')
                 return redirect('my_tickets')
@@ -219,7 +223,7 @@ def booking_create(request, pk):
             order.payment_method = method
             order.paid_at = timezone.now()
             order.save(update_fields=['status','payment_method','paid_at'])
-            Ticket.objects.filter(reservation=order, status=Ticket.PENDING).update(status=Ticket.BOOKED)
+            Ticket.objects.filter(reservation=order, user=request.user, status=Ticket.PENDING).update(status=Ticket.BOOKED)
     except (ValueError, TypeError):
         messages.error(request, 'Invalid reservation.')
         return redirect('my_tickets')
@@ -230,7 +234,9 @@ def booking_create(request, pk):
 @login_required
 def my_tickets(request):
     expire_reservations()
-    qs = Ticket.objects.filter(user=request.user).select_related(
+    qs = Ticket.objects.filter(user=request.user).filter(
+        Q(reservation__isnull=True) | Q(reservation__user=request.user)
+    ).select_related(
         'reservation','showtime__movie','showtime__hall__cinema','seat')
     now = timezone.now()
     return render(request, 'cinema/my_tickets.html', {
@@ -249,9 +255,15 @@ def ticket_cancel(request, pk):
         return HttpResponseNotAllowed(['POST'])
     expire_reservations()
     with transaction.atomic():
-        ticket = get_object_or_404(Ticket.objects.select_for_update(), pk=pk, user=request.user)
+        ticket = get_object_or_404(
+            Ticket.objects.select_for_update().filter(
+                Q(reservation__isnull=True) | Q(reservation__user=request.user)
+            ), pk=pk, user=request.user
+        )
         if ticket.status == Ticket.PENDING and ticket.reservation_id:
-            order = Reservation.objects.select_for_update().get(pk=ticket.reservation_id)
+            order = get_object_or_404(
+                Reservation.objects.select_for_update(), pk=ticket.reservation_id, user=request.user
+            )
             if order.status == 'pending' and order.expires_at > timezone.now():
                 ticket.status = Ticket.CANCELLED
                 ticket.save(update_fields=['status'])
@@ -271,7 +283,9 @@ def ticket_refund(request, pk):
 
     with transaction.atomic():
         ticket = get_object_or_404(
-            Ticket.objects.select_for_update().select_related(
+            Ticket.objects.select_for_update().filter(
+                Q(reservation__isnull=True) | Q(reservation__user=request.user)
+            ).select_related(
                 "reservation", "showtime"
             ),
             pk=pk,
@@ -301,7 +315,10 @@ def ticket_qr(request, pk):
     from django.urls import reverse
     from urllib.parse import urlencode
 
-    ticket = get_object_or_404(Ticket, pk=pk, user=request.user, status=Ticket.BOOKED)
+    ticket = get_object_or_404(
+        Ticket.objects.filter(Q(reservation__isnull=True) | Q(reservation__user=request.user)),
+        pk=pk, user=request.user, status=Ticket.BOOKED
+    )
     token = signing.dumps({'pk': ticket.pk, 'code': ticket.code}, salt='cinemago-ticket-v1')
     verify_url = request.build_absolute_uri(reverse('verify_ticket_qr')) + '?' + urlencode({'token':token})
     buffer = BytesIO()
