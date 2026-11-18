@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+  {% if LANGUAGE_CODE == "ru" %}
+    Редактировать профиль
+  {% elif LANGUAGE_CODE == "kk" %}
+    Профильді өзгерту
+  {% else %}
+    Edit Profile
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="auth-wrap">
+
+    {% if LANGUAGE_CODE == "ru" %}
+      <h1>Редактировать профиль</h1>
+    {% elif LANGUAGE_CODE == "kk" %}
+      <h1>Профильді өзгерту</h1>
+    {% else %}
+      <h1>Edit Profile</h1>
+    {% endif %}
+
+    <form method="post">
+      {% csrf_token %}
+
+      {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+      {% endif %}
+
+      {% for field in form %}
+        <p>
+          <label for="{{ field.id_for_label }}">
+            {% if field.name == "username" %}
+              {% if LANGUAGE_CODE == "ru" %}Имя пользователя
+              {% elif LANGUAGE_CODE == "kk" %}Пайдаланушы аты
+              {% else %}Username{% endif %}
+            {% elif field.name == "first_name" %}
+              {% if LANGUAGE_CODE == "ru" %}Имя
+              {% elif LANGUAGE_CODE == "kk" %}Аты
+              {% else %}First name{% endif %}
+            {% elif field.name == "last_name" %}
+              {% if LANGUAGE_CODE == "ru" %}Фамилия
+              {% elif LANGUAGE_CODE == "kk" %}Тегі
+              {% else %}Last name{% endif %}
+            {% elif field.name == "email" %}
+              {% if LANGUAGE_CODE == "ru" %}Электронная почта
+              {% elif LANGUAGE_CODE == "kk" %}Электрондық пошта
+              {% else %}Email{% endif %}
+            {% else %}
+              {{ field.label }}
+            {% endif %}:
+          </label>
+
+          {{ field }}
+
+          {% if field.help_text %}
+            <small>{{ field.help_text }}</small>
+          {% endif %}
+
+          {{ field.errors }}
+        </p>
+      {% endfor %}
+
+      <button class="btn" type="submit">
+        {% if LANGUAGE_CODE == "ru" %}
+          Сохранить изменения
+        {% elif LANGUAGE_CODE == "kk" %}
+          Өзгерістерді сақтау
+        {% else %}
+          Save Changes
+        {% endif %}
+      </button>
+
+      <a class="btn btn-soft" href="{% url 'profile' %}">
+        {% if LANGUAGE_CODE == "ru" %}
+          Отмена
+        {% elif LANGUAGE_CODE == "kk" %}
+          Болдырмау
+        {% else %}
+          Cancel
+        {% endif %}
+      </a>
+
+    </form>
+  </div>
+</div>
+{% endblock %}
