@@ -1,13 +1,25 @@
+
+from datetime import timedelta
+import hashlib
+
+from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
+from django.db import transaction
 from django.shortcuts import redirect, render
-from .forms import RegisterForm
+from django.utils import timezone
+from django.utils.translation import get_language
+
+from .forms import RegisterForm, ProfileEditForm, DeleteAccountForm
+from .models import LoginAttempt
 
 
 def register(request):
     if request.user.is_authenticated:
         return redirect("home")
+
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -17,6 +29,7 @@ def register(request):
             return redirect("home")
     else:
         form = RegisterForm()
+
     return render(request, "accounts/register.html", {"form": form})
 
 
@@ -25,17 +38,63 @@ def profile(request):
     return render(request, "accounts/profile.html")
 
 
-# The same generic sign-in error is shown for unknown users and bad passwords.
-# A username AND request-IP scoped rate limiter avoids a universal account lock.
-from datetime import timedelta
-import hashlib
+@login_required
+def edit_profile(request):
+    if request.method == "POST":
+        form = ProfileEditForm(request.POST, instance=request.user)
 
-from django.conf import settings
-from django.contrib.auth.views import LoginView
-from django.db import transaction
-from django.utils import timezone
-from django.utils.translation import get_language
-from .models import LoginAttempt
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Profile updated successfully.")
+            return redirect("profile")
+    else:
+        form = ProfileEditForm(instance=request.user)
+
+    return render(
+        request,
+        "accounts/edit_profile.html",
+        {"form": form}
+    )
+
+
+@login_required
+def delete_account(request):
+    if request.user.is_staff or request.user.is_superuser:
+        messages.error(
+            request,
+            "Administrator accounts cannot be deleted here."
+        )
+        return redirect("profile")
+
+    if request.method == "POST":
+        form = DeleteAccountForm(request.POST)
+
+        if form.is_valid():
+            password = form.cleaned_data["password"]
+
+            if request.user.check_password(password):
+                user = request.user
+
+                with transaction.atomic():
+                    user.delete()
+
+                logout(request)
+                messages.success(
+                    request,
+                    "Your account has been deleted successfully."
+                )
+                return redirect("home")
+
+            form.add_error("password", "Incorrect password.")
+    else:
+        form = DeleteAccountForm()
+
+    return render(
+        request,
+        "accounts/delete_account.html",
+        {"form": form}
+    )
+
 
 MAX_FAILURES = 5
 LOCK_SECONDS = 300
@@ -76,36 +135,62 @@ class SecureLoginView(LoginView):
     def post(self, request, *args, **kwargs):
         self._attempt_key = self.attempt_key()
         attempt = LoginAttempt.objects.filter(pk=self._attempt_key).first()
+
         if attempt and attempt.locked_until and attempt.locked_until > timezone.now():
-            seconds = max(1, int((attempt.locked_until-timezone.now()).total_seconds()) + 1)
-            return self.render_to_response(self.get_context_data(
-                form=self.form_class(),
-                login_error=login_message('locked', seconds),
-                lock_seconds=seconds,
-            ), status=429)
+            seconds = max(
+                1,
+                int((attempt.locked_until - timezone.now()).total_seconds()) + 1
+            )
+            return self.render_to_response(
+                self.get_context_data(
+                    form=self.form_class(),
+                    login_error=login_message('locked', seconds),
+                    lock_seconds=seconds,
+                ),
+                status=429
+            )
+
         return super().post(request, *args, **kwargs)
 
     def form_invalid(self, form):
-        # Only count an actual login attempt; missing form fields aren't passwords.
-        if self.request.POST.get('username', '').strip() and self.request.POST.get('password'):
+        if (
+            self.request.POST.get('username', '').strip()
+            and self.request.POST.get('password')
+        ):
             with transaction.atomic():
-                attempt, _ = LoginAttempt.objects.select_for_update().get_or_create(pk=self._attempt_key)
+                attempt, _ = LoginAttempt.objects.select_for_update().get_or_create(
+                    pk=self._attempt_key
+                )
                 now = timezone.now()
+
                 if attempt.locked_until and attempt.locked_until <= now:
                     attempt.failed_count = 0
                     attempt.locked_until = None
+
                 attempt.failed_count += 1
+
                 if attempt.failed_count >= MAX_FAILURES:
                     attempt.locked_until = now + timedelta(seconds=LOCK_SECONDS)
+
                 attempt.save()
+
             if attempt.locked_until and attempt.locked_until > now:
-                return self.render_to_response(self.get_context_data(
-                    form=form, login_error=login_message('locked', LOCK_SECONDS),
-                    lock_seconds=LOCK_SECONDS,
-                ), status=429)
-        return self.render_to_response(self.get_context_data(
-            form=form, login_error=login_message('invalid'),
-        ), status=200)
+                return self.render_to_response(
+                    self.get_context_data(
+                        form=form,
+                        login_error=login_message('locked', LOCK_SECONDS),
+                        lock_seconds=LOCK_SECONDS,
+                    ),
+                    status=429
+                )
+
+        return self.render_to_response(
+            self.get_context_data(
+                form=form,
+                login_error=login_message('invalid'),
+            ),
+            status=200
+        )
 
     def form_valid(self, form):
         LoginAttempt.objects.filter(pk=self._attempt_key).delete()

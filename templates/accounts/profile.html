@@ -1,18 +1,137 @@
+
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}{% trans 'Profile' %} | {% endblock %}
+
+{% block title %}
+  {% if LANGUAGE_CODE == "ru" %}
+    Мой профиль
+  {% elif LANGUAGE_CODE == "kk" %}
+    Менің профилім
+  {% else %}
+    My Profile
+  {% endif %}
+{% endblock %}
+
 {% block content %}
-<div class="container"><div class="auth-wrap">
-  <h1>{% trans 'My Profile' %}</h1>
-  <div class="profile-details">
-    <div class="profile-line"><span>{% trans 'Username' %}</span><strong>{{ user.username }}</strong></div>
-    <div class="profile-line"><span>{% trans 'Email' %}</span><strong>{{ user.email|default:'—' }}</strong></div>
-    <div class="profile-line"><span>{% trans 'Date joined' %}</span><strong>{{ user.date_joined|date:'d M Y' }}</strong></div>
+<div class="container">
+  <div class="auth-wrap">
+
+    <h1>
+      {% if LANGUAGE_CODE == "ru" %}
+        Мой профиль
+      {% elif LANGUAGE_CODE == "kk" %}
+        Менің профилім
+      {% else %}
+        My Profile
+      {% endif %}
+    </h1>
+
+    <div class="profile-details">
+
+      <div class="profile-line">
+        <span>
+          {% if LANGUAGE_CODE == "ru" %}
+            Имя пользователя
+          {% elif LANGUAGE_CODE == "kk" %}
+            Пайдаланушы аты
+          {% else %}
+            Username
+          {% endif %}
+        </span>
+        <strong>{{ user.username }}</strong>
+      </div>
+
+      <div class="profile-line">
+        <span>
+          {% if LANGUAGE_CODE == "ru" %}
+            Электронная почта
+          {% elif LANGUAGE_CODE == "kk" %}
+            Электрондық пошта
+          {% else %}
+            Email
+          {% endif %}
+        </span>
+        <strong style="overflow-wrap: anywhere;">
+          {{ user.email|default:'—' }}
+        </strong>
+      </div>
+
+      <div class="profile-line">
+        <span>
+          {% if LANGUAGE_CODE == "ru" %}
+            Дата регистрации
+          {% elif LANGUAGE_CODE == "kk" %}
+            Тіркелген күні
+          {% else %}
+            Date joined
+          {% endif %}
+        </span>
+        <strong>{{ user.date_joined|date:'d M Y' }}</strong>
+      </div>
+
+    </div>
+
+    <div class="profile-actions">
+
+      <a class="btn" href="{% url 'edit_profile' %}">
+        {% if LANGUAGE_CODE == "ru" %}
+          Редактировать профиль
+        {% elif LANGUAGE_CODE == "kk" %}
+          Профильді өзгерту
+        {% else %}
+          Edit Profile
+        {% endif %}
+      </a>
+
+      <a class="btn" href="{% url 'my_tickets' %}">
+        {% if LANGUAGE_CODE == "ru" %}
+          Мои билеты
+        {% elif LANGUAGE_CODE == "kk" %}
+          Менің билеттерім
+        {% else %}
+          My Tickets
+        {% endif %}
+      </a>
+
+      {% if not user.is_staff and not user.is_superuser %}
+        <a class="btn btn-soft" href="{% url 'delete_account' %}">
+          {% if LANGUAGE_CODE == "ru" %}
+            Удалить аккаунт
+          {% elif LANGUAGE_CODE == "kk" %}
+            Аккаунтты өшіру
+          {% else %}
+            Delete Account
+          {% endif %}
+        </a>
+      {% endif %}
+
+      {% if user.is_superuser %}
+        <a class="btn" href="{% url 'panel' %}">
+          {% if LANGUAGE_CODE == "ru" %}
+            Панель администратора
+          {% elif LANGUAGE_CODE == "kk" %}
+            Әкімші панелі
+          {% else %}
+            Admin Panel
+          {% endif %}
+        </a>
+      {% endif %}
+
+    </div>
+
+    <form method="post" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button class="btn btn-soft" type="submit">
+        {% if LANGUAGE_CODE == "ru" %}
+          Выйти
+        {% elif LANGUAGE_CODE == "kk" %}
+          Шығу
+        {% else %}
+          Log out
+        {% endif %}
+      </button>
+    </form>
+
   </div>
-  <div class="profile-actions">
-    <a class="btn" href="{% url 'my_tickets' %}">{% trans 'My Tickets' %}</a>
-    {% if user.is_superuser %}<a class="btn" href="{% url 'panel' %}">{% trans 'Admin Panel' %}</a>{% endif %}
-  </div>
-  <form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="btn btn-soft" type="submit">{% trans 'Log out' %}</button></form>
-</div></div>
+</div>
 {% endblock %}
