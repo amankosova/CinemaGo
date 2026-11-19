@@ -31,9 +31,17 @@
           <div class="cinema-photo">
             {% if item.photo %}<img src="{{ item.photo.0 }}" alt="{{ item.cinema.name }}" loading="lazy" referrerpolicy="no-referrer">{% else %}<span aria-hidden="true">🎬</span>{% endif %}
           </div>
-          <div class="cinema-home-body"><h3>{{ item.cinema.name }}</h3><p>{{ item.cinema.city }} · {{ item.cinema.address }}</p>
+          <div class="cinema-home-body"><h3>{{ item.cinema.name }}</h3>
+<p>
+  <a href="https://2gis.kz/almaty/search/{{ item.cinema.address|urlencode }}"
+     target="_blank"
+     rel="noopener noreferrer"
+     style="color: #008f83; text-decoration: underline; font-weight: 600;">
+    📍 {{ item.cinema.city }} · {{ item.cinema.address }} ↗
+  </a>
+</p>
+
           <a href="{% url 'movie_list' %}?cinema={{ item.cinema.pk }}">{% trans 'Browse movies' %} →</a>
-          {% if item.photo %}<small class="photo-credit">{% trans 'Photo' %}: <a href="{{ item.photo.2 }}" target="_blank" rel="noopener noreferrer">{{ item.photo.1 }}</a></small>{% endif %}
           </div>
         </article>
       {% empty %}<p>{% trans 'Cinemas will appear here soon.' %}</p>{% endfor %}

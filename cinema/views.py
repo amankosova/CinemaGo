@@ -21,7 +21,9 @@ MAX_SEATS = 6
 # Each image refers to the actual cinema, with attribution shown on the homepage.
 # Remote photos require network access; the CSS fallback still works offline.
 CINEMA_PHOTOS = {
-    'cinemax': ('https://data.cyclowiki.org/images/9/9a/Cinemax_almaty_2.jpg', 'Циклопедия', 'https://cyclowiki.org/wiki/CINEMAX_%28DostykPlaza%29_Dolby_Atmos_3D'),
+    'cinemax': ('https://avatars.mds.yandex.net/get-altay/374295/2a0000015b16ad40c0c4dbf43b8231505766/XXXL',
+    'Yandex Images',
+    ''),
     'halyk': ('https://img.inform.kz/kazinform-photobank/media/2023-10-21/c22e125a-43d9-446e-b5a5-40812920c929.webp', 'Kazinform', 'https://kaz.inform.kz/news/almatida-halyk-imax-kinopark-16-zhana-kinoteatri-ashiladi-7c9127/'),
     'kinoforum': ('https://static.tildacdn.pro/tild3436-6533-4230-a663-666164346236/_2021-07-13_222104.png', 'YESSET', 'https://yesset.kz/works/kt_forum'),
     'lumiera': ('https://lofficiel.kz/media/blog/entries/photos/2016/10/05/ec/5d/ec/ca/ec5decca5ed3d6b8079e2e7e7bacc9f2_1.jpg', "L'Officiel", 'https://lofficiel.kz/blog/2016/10/05/lumiera-novaya-razvlekatelnaya-tochka-na-karte-almaty/'),
