@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError, transaction
 from django.db.models import Q
-from django.http import HttpResponseNotAllowed
+from django.http import Http404, HttpResponseNotAllowed
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
@@ -21,9 +21,9 @@ MAX_SEATS = 6
 # Each image refers to the actual cinema, with attribution shown on the homepage.
 # Remote photos require network access; the CSS fallback still works offline.
 CINEMA_PHOTOS = {
-    'cinemax': ('https://avatars.mds.yandex.net/get-altay/374295/2a0000015b16ad40c0c4dbf43b8231505766/XXXL',
-    'Yandex Images',
-    ''),
+
+    'cinemax': ('https://avatars.mds.yandex.net/get-altay/374295/2a0000015b16ad40c0c4dbf43b8231505766/XXXL','Yandex Images',''),
+    'cinemax': ('https://avatars.mds.yandex.net/get-altay/374295/2a0000015b16ad40c0c4dbf43b8231505766/XXXL','Yandex Images',''),
     'halyk': ('https://img.inform.kz/kazinform-photobank/media/2023-10-21/c22e125a-43d9-446e-b5a5-40812920c929.webp', 'Kazinform', 'https://kaz.inform.kz/news/almatida-halyk-imax-kinopark-16-zhana-kinoteatri-ashiladi-7c9127/'),
     'kinoforum': ('https://static.tildacdn.pro/tild3436-6533-4230-a663-666164346236/_2021-07-13_222104.png', 'YESSET', 'https://yesset.kz/works/kt_forum'),
     'lumiera': ('https://lofficiel.kz/media/blog/entries/photos/2016/10/05/ec/5d/ec/ca/ec5decca5ed3d6b8079e2e7e7bacc9f2_1.jpg', "L'Officiel", 'https://lofficiel.kz/blog/2016/10/05/lumiera-novaya-razvlekatelnaya-tochka-na-karte-almaty/'),
@@ -181,6 +181,8 @@ def checkout(request, order_id):
     expire_reservations()
     order = get_object_or_404(Reservation.objects.select_related('showtime__movie', 'showtime__hall__cinema'),
                               pk=order_id, user=request.user)
+    if order.tickets.exclude(user=request.user).exists():
+        raise Http404
     if order.status == 'paid':
         return redirect('my_tickets')
     if order.status != 'pending':
@@ -214,6 +216,8 @@ def booking_create(request, pk):
             expire_reservations()
             order = get_object_or_404(Reservation.objects.select_for_update(),
                                       pk=order_id, user=request.user, showtime_id=pk)
+            if order.tickets.exclude(user=request.user).exists():
+                raise Http404
             if order.status != 'pending' or order.expires_at <= timezone.now() or order.showtime.is_past:
                 messages.error(request, 'The ten-minute reservation has expired.')
                 return redirect('my_tickets')
@@ -221,7 +225,7 @@ def booking_create(request, pk):
             order.payment_method = method
             order.paid_at = timezone.now()
             order.save(update_fields=['status','payment_method','paid_at'])
-            Ticket.objects.filter(reservation=order, status=Ticket.PENDING).update(status=Ticket.BOOKED)
+            Ticket.objects.filter(reservation=order, user=request.user, status=Ticket.PENDING).update(status=Ticket.BOOKED)
     except (ValueError, TypeError):
         messages.error(request, 'Invalid reservation.')
         return redirect('my_tickets')
@@ -232,7 +236,9 @@ def booking_create(request, pk):
 @login_required
 def my_tickets(request):
     expire_reservations()
-    qs = Ticket.objects.filter(user=request.user).select_related(
+    qs = Ticket.objects.filter(user=request.user).filter(
+        Q(reservation__isnull=True) | Q(reservation__user=request.user)
+    ).select_related(
         'reservation','showtime__movie','showtime__hall__cinema','seat')
     now = timezone.now()
     return render(request, 'cinema/my_tickets.html', {
@@ -251,9 +257,15 @@ def ticket_cancel(request, pk):
         return HttpResponseNotAllowed(['POST'])
     expire_reservations()
     with transaction.atomic():
-        ticket = get_object_or_404(Ticket.objects.select_for_update(), pk=pk, user=request.user)
+        ticket = get_object_or_404(
+            Ticket.objects.select_for_update().filter(
+                Q(reservation__isnull=True) | Q(reservation__user=request.user)
+            ), pk=pk, user=request.user
+        )
         if ticket.status == Ticket.PENDING and ticket.reservation_id:
-            order = Reservation.objects.select_for_update().get(pk=ticket.reservation_id)
+            order = get_object_or_404(
+                Reservation.objects.select_for_update(), pk=ticket.reservation_id, user=request.user
+            )
             if order.status == 'pending' and order.expires_at > timezone.now():
                 ticket.status = Ticket.CANCELLED
                 ticket.save(update_fields=['status'])
@@ -273,7 +285,9 @@ def ticket_refund(request, pk):
 
     with transaction.atomic():
         ticket = get_object_or_404(
-            Ticket.objects.select_for_update().select_related(
+            Ticket.objects.select_for_update().filter(
+                Q(reservation__isnull=True) | Q(reservation__user=request.user)
+            ).select_related(
                 "reservation", "showtime"
             ),
             pk=pk,
@@ -303,7 +317,10 @@ def ticket_qr(request, pk):
     from django.urls import reverse
     from urllib.parse import urlencode
 
-    ticket = get_object_or_404(Ticket, pk=pk, user=request.user, status=Ticket.BOOKED)
+    ticket = get_object_or_404(
+        Ticket.objects.filter(Q(reservation__isnull=True) | Q(reservation__user=request.user)),
+        pk=pk, user=request.user, status=Ticket.BOOKED
+    )
     token = signing.dumps({'pk': ticket.pk, 'code': ticket.code}, salt='cinemago-ticket-v1')
     verify_url = request.build_absolute_uri(reverse('verify_ticket_qr')) + '?' + urlencode({'token':token})
     buffer = BytesIO()
