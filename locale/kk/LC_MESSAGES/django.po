@@ -364,3 +364,12 @@ msgstr "Электрондық пошта"
 msgid "Date joined"
 msgstr "Тіркелген күні"
 
+msgid "Watch Trailer"
+msgstr "Трейлерді көру"
+
+msgid "Loading trailer..."
+msgstr "Трейлер жүктелуде…"
+
+msgid "Open trailer on YouTube"
+msgstr "Трейлерді YouTube-та ашу"
+

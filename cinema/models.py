@@ -1,4 +1,6 @@
 import secrets
+import re
+from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -48,9 +50,36 @@ class Movie(models.Model):
     duration = models.PositiveIntegerField(_("Duration (min)"))
     year = models.PositiveIntegerField(_("Year"))
     poster = models.ImageField(_("Poster"), upload_to="posters/", blank=True)
+    trailer_url = models.URLField("Official YouTube trailer", max_length=500, blank=True, default="")
 
     class Meta:
         ordering = ["title_en"]
+
+    @property
+    def trailer_video_id(self):
+        """Allow YouTube IDs from known URL formats only, never arbitrary iframe URLs."""
+        if not self.trailer_url:
+            return ""
+        try:
+            parsed = urlparse(self.trailer_url)
+            hostname = (parsed.hostname or "").lower()
+            if parsed.scheme != "https":
+                return ""
+            if hostname in ("youtu.be", "www.youtu.be"):
+                candidate = parsed.path.strip("/").split("/")[0]
+            elif hostname in ("youtube.com", "www.youtube.com", "m.youtube.com", "youtube-nocookie.com", "www.youtube-nocookie.com"):
+                segments = parsed.path.strip("/").split("/")
+                if parsed.path == "/watch":
+                    candidate = parse_qs(parsed.query).get("v", [""])[0]
+                elif segments[0] in ("embed", "shorts", "live") and len(segments) > 1:
+                    candidate = segments[1]
+                else:
+                    return ""
+            else:
+                return ""
+            return candidate if re.fullmatch(r"[A-Za-z0-9_-]{11}", candidate) else ""
+        except (ValueError, IndexError):
+            return ""
 
     @property
     def title(self):

@@ -35,12 +35,22 @@ class MovieForm(StyledForm):
             "duration",
             "year",
             "poster",
+            "trailer_url",
         ]
         widgets = {
             "description_en": forms.Textarea(attrs={"rows": 4}),
             "description_ru": forms.Textarea(attrs={"rows": 4}),
             "description_kk": forms.Textarea(attrs={"rows": 4}),
         }
+
+    def clean_trailer_url(self):
+        url = self.cleaned_data.get("trailer_url", "")
+        if url:
+            movie = Movie(trailer_url=url)
+            if not movie.trailer_video_id:
+                raise forms.ValidationError("Enter a valid YouTube video link (youtube.com or youtu.be).")
+        return url
+
 
 
 class CinemaForm(StyledForm):

@@ -8,11 +8,20 @@
   <div class="container">
 
     <div class="movie-head">
-      <div class="poster-img">
+      <div class="movie-poster-wrap">
+        <div class="poster-img">
         {% if movie.poster %}
           <img src="{{ movie.poster.url }}" alt="{{ movie.title }}">
         {% else %}
           <div class="no-poster">{{ movie.title|first }}</div>
+        {% endif %}
+        </div>
+        {% if movie.trailer_video_id %}
+          <button type="button" class="trailer-play-button" data-trailer-open
+                  aria-label="{% trans 'Watch Trailer' %}">
+            <span aria-hidden="true">▶</span>
+            <span>{% trans "Watch Trailer" %}</span>
+          </button>
         {% endif %}
       </div>
       <div>
@@ -29,6 +38,24 @@
         <p class="movie-desc">{{ movie.description }}</p>
       </div>
     </div>
+
+    {% if movie.trailer_video_id %}
+      <dialog class="cg-modal cg-trailer-modal" id="movie-trailer-dialog"
+              aria-label="{% trans 'Watch Trailer' %}">
+        <div class="cg-modal-header">
+          <strong>{{ movie.title }} — {% trans "Watch Trailer" %}</strong>
+          <button type="button" class="cg-modal-close" data-dialog-close aria-label="{% trans 'Close' %}">×</button>
+        </div>
+        <div class="cg-video-frame" data-youtube-id="{{ movie.trailer_video_id }}">
+          <p>{% trans "Loading trailer..." %}</p>
+        </div>
+        <p class="cg-modal-note">
+          <a href="https://www.youtube.com/watch?v={{ movie.trailer_video_id }}" target="_blank" rel="noopener noreferrer">
+            {% trans "Open trailer on YouTube" %} ↗
+          </a>
+        </p>
+      </dialog>
+    {% endif %}
 
     <div class="showtimes-box">
       <h2>{% trans "Choose a showtime" %}</h2>
