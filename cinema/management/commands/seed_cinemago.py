@@ -14,6 +14,9 @@ from cinema.models import Cinema, Genre, Hall, Movie, Showtime
 # Showtime dates and prices are classroom demonstration values; movie metadata comes from the curated film dataset.
 MOVIES = [('Дюна: Часть третья', 'duna3.webp', 'боевик • драма'), ('Бажа кинода', 'bazha_kinoda.webp', 'комедия'), ('Заманback 2', 'zamanback2.webp', 'драма • комедия'), ('Бауыр', 'baur.webp', 'комедия'), ('Кот в шляпе', 'kot_v_sh.webp', 'мультфильм • фэнтези'), ('Шымыр', 'shymyr.webp', 'боевик • экшн'), ('Қара түйін', 'qara_tuyon.webp', 'детектив • триллер'), ('Құдірет', 'qudiret.webp', 'драма'), ('Кит: Во тьме глубин', 'kit.webp', 'драма • триллер'), ('Зверь', 'zver.webp', 'боевик • драма'), ('Остров забвения', 'ostrov_zabv.webp', 'приключения • комедия'), ('Сумерки. Сага. Затмение', 'sumerki.webp', 'мелодрама • фэнтези'), ('Роллинг Лауд. Дикое веселье', 'rolling.webp', 'комедия'), ('Клэйфейс', 'clayface.webp', 'боевик • хоррор'), ('Маленькие демоны путешествуют на Запад', 'little_demons.webp', 'анимация • комедия')]
 
+# Official trailer links supplied by the project team.
+TRAILER_URLS = {'Бажа кинода': 'https://youtu.be/vfrxGyiAP5I', 'Бауыр': 'https://youtu.be/XvXiLFm83SA', 'Дюна: Часть третья': 'https://youtu.be/eNor7cGhkyw', 'Заманback 2': 'https://youtu.be/r2lmeBrmSM0', 'Зверь': 'https://youtu.be/OOewV9EX66c', 'Кит: Во тьме глубин': 'https://youtu.be/9uu_J9Fzwrs', 'Клэйфейс': 'https://youtu.be/xNnaMFoRO0Y', 'Кот в шляпе': 'https://youtu.be/d2XgdXr7OEI', 'Маленькие демоны путешествуют на Запад': 'https://youtu.be/nrgxjFJHmcI', 'Остров забвения': 'https://youtu.be/BDiVCLplf7s', 'Роллинг Лауд. Дикое веселье': 'https://youtu.be/_duF3uBuwt8', 'Сумерки. Сага. Затмение': 'https://youtu.be/GPKsi5EfwiE', 'Шымыр': 'https://youtu.be/YXIoXHlivOg', 'Қара түйін': 'https://youtu.be/k46p09tyRGM', 'Құдірет': 'https://youtu.be/HzdQByJnOdM'}
+
 CINEMAS = [('Halyk IMAX Aport Cinema East', 'Кульджинский тракт, 106, молл Aport East, 2 этаж'), ('Kinoforum 15 (ТРЦ Forum)', 'ул. Сейфуллина, 617, ТРЦ «Forum Almaty», 5-й этаж'), ('Cinemax Dostyk Multiplex', 'Самал-2, д. 111, ТРЦ «Достык Плаза»'), ('Lumiera Cinema (ЦУМ)', 'пр. Абылай хана, 62, «Арбат»')]
 
 class Command(BaseCommand):
@@ -60,6 +63,7 @@ class Command(BaseCommand):
                 movie.description_kk = details_row['description_kk']
                 movie.duration = details_row['duration_minutes']
                 movie.year = details_row['year']
+                movie.trailer_url = TRAILER_URLS[title]
                 movie.director = details_row['director']
                 movie.main_cast = ', '.join(details_row['main_cast'])
                 movie.country = details_row['country']

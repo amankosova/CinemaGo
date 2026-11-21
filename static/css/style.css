@@ -642,3 +642,69 @@ table.data td.actions { white-space: nowrap; text-align: right; }
 .ticket-qr-box { margin-top:10px; border:1px solid #c9e5e0; background:#fff; border-radius:15px; padding:14px; width:min(100%,240px); text-align:center; }
 .ticket-qr-box img { display:block; width:180px; height:180px; max-width:100%; margin:auto; image-rendering:pixelated; }
 .ticket-qr-box p { font-size:12px; color:#5f717a; margin:8px 0 0; }
+
+
+/* Compact CinemaGo ticket and YouTube trailer dialogs */
+.ticket-main { min-width:0; display:flex; flex-direction:column; align-items:flex-start; }
+.ticket-main .ticket-actions { margin-top:18px; }
+.ticket-main .ticket-actions form { margin:0; }
+.ticket-main .ticket-actions .btn { font-size:.88rem; padding:10px 15px; }
+.ticket-stub { min-width:0; }
+.ticket-stub .ticket-code { font-size:.72rem; letter-spacing:.06em; overflow-wrap:anywhere; }
+.ticket-open-qr { appearance:none; border:1px solid #7acdc4; border-radius:12px; background:#fff; color:#087b70; font:inherit; font-weight:750; font-size:.83rem; cursor:pointer; padding:9px 11px; margin-top:12px; }
+.ticket-open-qr:hover,.ticket-open-qr:focus-visible { background:#e6faf6; }
+.cg-modal { border:0; border-radius:22px; padding:0; background:#fff; color:#25394b; box-shadow:0 22px 70px rgba(6,24,35,.28); max-width:calc(100vw - 26px); max-height:calc(100vh - 24px); overflow:auto; }
+.cg-modal::backdrop { background:rgba(10,24,34,.75); backdrop-filter:blur(4px); }
+.cg-modal[open] { animation:cg-modal-in .2s ease-out; }
+@keyframes cg-modal-in { from { transform:translateY(10px) scale(.98);opacity:.3; } to { transform:translateY(0) scale(1);opacity:1; } }
+.cg-modal-header { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:17px 22px; border-bottom:1px solid #e0efec; }
+.cg-modal-header strong { font-size:1rem; }
+.cg-modal-close { border:0; background:#e9f7f4; color:#1a4d56; border-radius:50%; width:36px; height:36px; font-size:1.55rem; line-height:1; cursor:pointer; flex-shrink:0; }
+.cg-modal-close:hover,.cg-modal-close:focus-visible { background:#cdeee8; }
+.cg-ticket-modal { width:min(410px, calc(100vw - 26px)); }
+.cg-ticket-details { padding:20px 24px 24px; text-align:center; }
+.cg-ticket-details h3 { margin:0 0 20px; }
+.cg-ticket-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; text-align:left; margin-bottom:20px; }
+.cg-ticket-grid>div { min-width:0; }
+.cg-ticket-grid span { display:block; font-size:.76rem; color:#6d8590; }
+.cg-ticket-grid strong { font-size:.9rem; overflow-wrap:anywhere; }
+.cg-ticket-qr-image { width:190px; height:190px; max-width:100%; object-fit:contain; background:#fff; border:1px solid #dcebe7; border-radius:12px; padding:8px; margin:auto; }
+.cg-modal-note { color:#637985; font-size:.8rem; line-height:1.45; margin:12px 0 0; text-align:center; }
+.movie-poster-wrap { width:100%; max-width:280px; position:relative; }
+.movie-poster-wrap .poster-img { width:100%; }
+.trailer-play-button { position:absolute; bottom:14px; left:50%; transform:translateX(-50%); padding:11px 17px; border:1px solid rgba(255,255,255,.5); border-radius:999px; background:rgba(22,36,48,.91); color:white; display:flex; align-items:center; gap:8px; white-space:nowrap; font:inherit; font-weight:750; cursor:pointer; transition:background .2s, bottom .2s; }
+.trailer-play-button:hover,.trailer-play-button:focus-visible { bottom:18px; background:#148b80; }
+.trailer-play-button span:first-child { font-size:.85rem; }
+.cg-trailer-modal { width:min(950px,calc(100vw - 26px)); background:#0c1520; color:#fff; }
+.cg-trailer-modal .cg-modal-header { border-bottom-color:#34404b; }
+.cg-trailer-modal .cg-modal-close { background:#354453; color:white; }
+.cg-video-frame { width:100%; aspect-ratio:16/9; background:#070c12; display:grid; place-items:center; }
+.cg-video-frame iframe { width:100%; height:100%; display:block; border:0; }
+.cg-trailer-modal .cg-modal-note { padding-bottom:15px; }
+.cg-trailer-modal .cg-modal-note a { color:#9fe1d8; }
+@media (max-width:650px) { .cg-ticket-details {padding:18px;} .cg-modal-header {padding:13px 17px;} }
+@media (prefers-reduced-motion: reduce) { .cg-modal[open] {animation:none;} }
+
+/* Trailer action sits BELOW the poster, not on top of the image. */
+.movie-poster-wrap .trailer-play-button {
+  position: static;
+  transform: none;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 12px;
+  padding: 12px 18px;
+  border: 1px solid #91d9d1;
+  border-radius: 999px;
+  background: #8edbd2;
+  color: #18394a;
+  box-shadow: none;
+  transition: background .2s ease, box-shadow .2s ease;
+}
+.movie-poster-wrap .trailer-play-button:hover,
+.movie-poster-wrap .trailer-play-button:focus-visible {
+  bottom: auto;
+  background: #73ccc2;
+  box-shadow: 0 3px 10px rgba(21, 72, 78, .12);
+}
