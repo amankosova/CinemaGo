@@ -1,251 +1,57 @@
 
-{% extends "base.html" %}
-{% load i18n %}
+.my-profile-top {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  text-align: center;
+  padding: 48px 25px 36px;
 
-{% block title %}
-  {% if LANGUAGE_CODE == "ru" %}Мой профиль
-  {% elif LANGUAGE_CODE == "kk" %}Менің профилім
-  {% else %}My Profile{% endif %}
-{% endblock %}
+  background:
+    radial-gradient(
+      ellipse at 10% 85%,
+      rgba(133, 219, 204, 0.45),
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse at 95% 90%,
+      rgba(255, 194, 159, 0.5),
+      transparent 45%
+    ),
+    linear-gradient(
+      110deg,
+      #c8f2e9 0%,
+      #f4faf5 52%,
+      #ffe4d4 100%
+    );
+}
 
-{% block content %}
+.my-profile-top::before {
+  content: "🎞";
+  position: absolute;
+  top: 5px;
+  left: 20px;
+  font-size: 95px;
+  opacity: 0.13;
+  transform: rotate(-25deg);
+  pointer-events: none;
+  z-index: -1;
+}
 
-<style>
-  .my-profile {
-    max-width: 650px;
-    margin: 45px auto 70px;
-    padding: 0 20px;
-  }
+.my-profile-top::after {
+  content: "🎬 🍿";
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  font-size: 45px;
+  opacity: 0.17;
+  transform: rotate(12deg);
+  pointer-events: none;
+  z-index: -1;
+}
 
-  .my-profile-card {
-    background: #ffffff;
-    border-radius: 26px;
-    overflow: hidden;
-    box-shadow: 0 12px 35px rgba(35, 65, 70, 0.08);
-  }
-
-  .my-profile-top {
-    background: linear-gradient(120deg, #d8f3ef, #ffe5d3);
-    padding: 35px 25px 30px;
-    text-align: center;
-  }
-
-  .my-profile-avatar {
-    width: 78px;
-    height: 78px;
-    margin: 0 auto 15px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 34px;
-    font-weight: 800;
-    color: #168e83;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-  }
-
-  .my-profile-top h1 {
-    margin: 0;
-    color: #20364c;
-    font-size: 29px;
-  }
-
-  .my-profile-username {
-    margin: 8px 0 0;
-    color: #527782;
-  }
-
-  .my-profile-content {
-    padding: 30px;
-  }
-
-  .my-profile-info {
-    display: grid;
-    gap: 12px;
-    margin-bottom: 25px;
-  }
-
-  .my-profile-item {
-    background: #f1faf8;
-    border: 1px solid #e1f0ec;
-    border-radius: 14px;
-    padding: 16px 19px;
-  }
-
-  .my-profile-item span {
-    display: block;
-    font-size: 13px;
-    color: #678b95;
-    margin-bottom: 6px;
-  }
-
-  .my-profile-item strong {
-    color: #20364c;
-    font-size: 16px;
-    overflow-wrap: anywhere;
-  }
-
-  .my-profile-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .my-profile-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 12px;
-    border: 0;
-    border-radius: 14px;
-    background: #8bded5;
-    color: #20364c;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    text-align: center;
-    transition: 0.2s;
-    font-family: inherit;
-  }
-
-  .my-profile-button:hover {
-    background: #65cfc4;
-    transform: translateY(-2px);
-  }
-
-  .my-profile-button.peach {
-    background: #ffe4d4;
-  }
-
-  .my-profile-button.peach:hover {
-    background: #ffd2b9;
-  }
-
-  .my-profile-button.light {
-    background: #e0f2ef;
-  }
-
-  .my-profile-button.light:hover {
-    background: #cce9e4;
-  }
-
-  .my-profile-actions form {
-    margin: 0;
-  }
-
-  .my-profile-actions form button {
-    width: 100%;
-    height: 100%;
-  }
-
-  @media (max-width: 480px) {
-    .my-profile-actions {
-      grid-template-columns: 1fr;
-    }
-
-    .my-profile-content {
-      padding: 20px;
-    }
-
-    .my-profile-top h1 {
-      font-size: 25px;
-    }
-  }
-</style>
-
-<div class="my-profile">
-  <div class="my-profile-card">
-
-    <div class="my-profile-top">
-      <div class="my-profile-avatar">
-        {{ user.username|first|upper }}
-      </div>
-
-      <h1>
-        {% if LANGUAGE_CODE == "ru" %}Мой профиль
-        {% elif LANGUAGE_CODE == "kk" %}Менің профилім
-        {% else %}My Profile{% endif %}
-      </h1>
-
-      <p class="my-profile-username">@{{ user.username }}</p>
-    </div>
-
-    <div class="my-profile-content">
-      <div class="my-profile-info">
-
-        <div class="my-profile-item">
-          <span>
-            {% if LANGUAGE_CODE == "ru" %}Имя пользователя
-            {% elif LANGUAGE_CODE == "kk" %}Пайдаланушы аты
-            {% else %}Username{% endif %}
-          </span>
-          <strong>{{ user.username }}</strong>
-        </div>
-
-        <div class="my-profile-item">
-          <span>
-            {% if LANGUAGE_CODE == "ru" %}Электронная почта
-            {% elif LANGUAGE_CODE == "kk" %}Электрондық пошта
-            {% else %}Email{% endif %}
-          </span>
-          <strong>{{ user.email|default:"—" }}</strong>
-        </div>
-
-        <div class="my-profile-item">
-          <span>
-            {% if LANGUAGE_CODE == "ru" %}Дата регистрации
-            {% elif LANGUAGE_CODE == "kk" %}Тіркелген күні
-            {% else %}Date joined{% endif %}
-          </span>
-          <strong>{{ user.date_joined|date:"d M Y" }}</strong>
-        </div>
-
-      </div>
-
-      <div class="my-profile-actions">
-
-        <a class="my-profile-button" href="{% url 'edit_profile' %}">
-          {% if LANGUAGE_CODE == "ru" %}✎ Редактировать
-          {% elif LANGUAGE_CODE == "kk" %}✎ Өзгерту
-          {% else %}✎ Edit Profile{% endif %}
-        </a>
-
-        <a class="my-profile-button" href="{% url 'my_tickets' %}">
-          {% if LANGUAGE_CODE == "ru" %}🎟 Мои билеты
-          {% elif LANGUAGE_CODE == "kk" %}🎟 Менің билеттерім
-          {% else %}🎟 My Tickets{% endif %}
-        </a>
-
-        {% if not user.is_staff and not user.is_superuser %}
-          <a class="my-profile-button peach" href="{% url 'delete_account' %}">
-            {% if LANGUAGE_CODE == "ru" %}Удалить аккаунт
-            {% elif LANGUAGE_CODE == "kk" %}Аккаунтты өшіру
-            {% else %}Delete Account{% endif %}
-          </a>
-        {% endif %}
-
-        {% if user.is_superuser %}
-          <a class="my-profile-button" href="{% url 'panel' %}">
-            {% if LANGUAGE_CODE == "ru" %}Панель администратора
-            {% elif LANGUAGE_CODE == "kk" %}Әкімші панелі
-            {% else %}Admin Panel{% endif %}
-          </a>
-        {% endif %}
-
-        <form method="post" action="{% url 'logout' %}">
-          {% csrf_token %}
-          <button class="my-profile-button light" type="submit">
-            {% if LANGUAGE_CODE == "ru" %}Выйти
-            {% elif LANGUAGE_CODE == "kk" %}Шығу
-            {% else %}Log out{% endif %}
-          </button>
-        </form>
-
-      </div>
-    </div>
-  </div>
-</div>
-
-{% endblock %}
+.my-profile-avatar {
+  position: relative;
+  z-index: 1;
+  border-radius: 24px;
+  box-shadow: 0 8px 22px rgba(25, 100, 90, 0.12);
+}
