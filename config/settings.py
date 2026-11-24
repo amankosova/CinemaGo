@@ -5,7 +5,9 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-cinemago-change-before-deployment")
 DEBUG = True
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".trycloudflare.com", ".lhr.life"]
+CSRF_TRUSTED_ORIGINS = ["https://*.trycloudflare.com", "https://*.lhr.life"]
+
 
 INSTALLED_APPS = [
     "django.contrib.auth",
